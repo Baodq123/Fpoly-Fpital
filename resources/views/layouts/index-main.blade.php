@@ -280,9 +280,8 @@
 							</div>
 							<div class="col-md-6 d-flex">
 								<div class="about-wrap">
-									<div class="heading-section heading-section-white mb-5 ftco-animate">
-										<h2 class="mb-2" class="font-weight-bold" style="font-family: UTM Avo; font-weight: bold; color: #4e4e4e!important">CHÚNG TÔI CÓ SỰ KHÁC BIỆT</h2>
-										<!-- 							<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
+									<div class="mb-5 ftco-animate">
+											<h2 class="mb-2" class="font-weight-bold" style="font-family: UTM Avo; font-weight: bold; color: white!important">CHÚNG TÔI CÓ SỰ KHÁC BIỆT</h2>
 									</div>
 									<div class="list-services d-flex ftco-animate">
 										<div class="icon d-flex justify-content-center align-items-center">
@@ -538,8 +537,8 @@
 			<div class="parallax-img d-flex align-items-center">
 				<div class="container">
 					<div class="row d-flex">
-						<div class="col-md-6 text-center heading-section heading-section-white ftco-animate">
-							<h2 style="font-family: UTM avo; font-size: 25px; margin-top: -10px;">Đăng ký nhận thông tin từ Fpital</h2>
+						<div class="col-md-6 text-center ftco-animate">
+							<h2 style="font-family: UTM avo; font-size: 25px; margin-top: -10px; color: white!important">Đăng ký nhận thông tin từ Fpital</h2>
 							<div class="row d-flex justify-content-center mt-5">
 								<div class="col-md-8">
 									<form action="#" class="subscribe-form" style="margin-top: -30px;">
@@ -551,9 +550,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6 text-center heading-section heading-section-white ftco-animate">
-							<h2 style="font-family: UTM avo; font-size: 25px;">Tổng đài tư vấn miễn phí</h2>
-							<p style="font-size: 30px; font-weight: bold; margin-bottom: -10px;"><i class="fas fa-phone-square-alt"></i> 0966 976 160</p>
+						<div class="col-md-6 text-center ftco-animate">
+							<h2 style="font-family: UTM avo; font-size: 25px; color: white!important">Tổng đài tư vấn miễn phí</h2>
+							<p style="font-size: 30px; font-weight: bold; margin-bottom: -10px; color: white!important"><i class="fas fa-phone-square-alt"></i> 0966 976 160</p>
 						</div>
 					</div>
 				</div>
