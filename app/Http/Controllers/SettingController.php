@@ -1,8 +1,16 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Setting;
+use App\Doctor;
+use App\Service;
+use App\Post;
+use App\Comment;
+use App\Category;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class SettingController extends Controller
 {
@@ -14,6 +22,42 @@ class SettingController extends Controller
             'dsSetting' => $setting
         ]); 
     }
+    
+    public function index() {
+        $service = Service::all();
+        $doctor = Doctor::all();
+        $posts = Post::all();
+        $comment = Comment::all();
+
+        return view('site.index', compact('service', 'doctor', 'posts', 'comment'));
+    }
+
+    public function blog(Request $request){
+        $posts = Post::all();
+        $cates = Category::all();
+        return view('site.blog', compact('posts', 'cates')); 
+    }
+
+    // public function show(Request $request){
+    //     $service = Service::all();
+    //     return view('site.index', [
+    //         'dsSetting1' => $service
+    //     ]); 
+    // }
+
+    // public function doctor(Request $request){
+    //     $doctor = Doctor::all();
+    //     return view('site.index', [
+    //         'dsSetting2' => $doctor
+    //     ]); 
+    // }
+
+    // public function post(Request $request){
+    //     $post = Post::all();
+    //     return view('site.index', [
+    //         'dsSetting3' => $post
+    //     ]); 
+    // }
 
 public function editForm($id){
     $model = Setting::find($id);

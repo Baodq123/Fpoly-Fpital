@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Service;
+use App\Doctor;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\AddServiceRequest;
 use App\Http\Requests\EditServiceRequest;
@@ -16,6 +17,13 @@ class ServiceController extends Controller
             'dsDichVu' => $service
         ]); 
     }
+    public function show(Request $request){
+        $service = Service::all();
+        return view('site.index', [
+            'dsDichVu1' => $service
+        ]); 
+    }
+    
     
     public function remove($id){
         DB::beginTransaction();

@@ -38,6 +38,7 @@ Route::post('doctor-add', 'DoctorController@saveAdd');
 Route::get('doctor-edit-{id}', 'DoctorController@editForm')->name('doctor.edit');
 Route::post('doctor-edit-{id}', 'DoctorController@saveEdit');
 Route::get('doctor-remove/{id}', 'DoctorController@remove')->name('doctor.remove');
+// Route::get('/', 'DoctorController@show');
 
 Route::get('/ratedoctor', 'RatedoctorController@ratedoctor')->name('ratedoctor');
 Route::get('ratedoctor-edit-{id}', 'RatedoctorController@editForm')->name('ratedoctor.edit');
@@ -93,6 +94,10 @@ Route::post('service-add', 'ServiceController@saveAdd');
 Route::get('service-edit-{id}', 'ServiceController@editForm')->name('service.edit');
 Route::post('service-edit-{id}', 'ServiceController@saveEdit');
 Route::get('service-remove/{id}', 'ServiceController@remove')->name('service.remove');
+// Route::get('/', 'ServiceController@show');
+
+// Route::get('/', 'SettingController@post');
+
 
 Route::get('/booking', 'BookingController@booking')->name('booking');
 Route::get('booking-add', 'BookingController@addForm')->name('booking.add');
@@ -107,6 +112,8 @@ Route::post('rateservice-edit-{id}', 'RateserviceController@saveEdit');
 Route::get('rateservice-remove/{id}', 'RateserviceController@remove')->name('rateservice.remove');
 
 Route::get('/setting', 'SettingController@setting')->name('setting');
+Route::get('/', 'SettingController@index');
+Route::get('/blog', 'SettingController@blog');
 Route::get('setting-edit-{id}', 'SettingController@editForm')->name('setting.edit');
 Route::post('setting-edit-{id}', 'SettingController@saveEdit');
 

@@ -34,6 +34,13 @@ class DoctorController extends Controller
             'dsBacSi' => $doctor
         ]); 
     }
+
+    public function show(Request $request){
+        $doctor = Doctor::all();
+        return view('doctor-show.doctor-show', [
+            'dsBacSi1' => $doctor
+        ]); 
+    }
     
     public function remove($id){
         DB::beginTransaction();
