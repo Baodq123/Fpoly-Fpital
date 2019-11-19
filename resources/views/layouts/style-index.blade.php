@@ -1,4 +1,4 @@
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
 
     <link rel="stylesheet" href="Fpital/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="Fpital/css/animate.css">

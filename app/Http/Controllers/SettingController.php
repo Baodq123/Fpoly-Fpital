@@ -26,16 +26,30 @@ class SettingController extends Controller
     public function index() {
         $service = Service::all();
         $doctor = Doctor::all();
-        $posts = Post::all();
-        $comment = Comment::all();
+        $posts = Post::all()->take(3);
+        $comment = Comment::all()->take(4);
 
         return view('site.index', compact('service', 'doctor', 'posts', 'comment'));
     }
 
     public function blog(Request $request){
-        $posts = Post::all();
+        $posts = Post::paginate(5);
+        $posts2 = Post::all()->take(5);
         $cates = Category::all();
-        return view('site.blog', compact('posts', 'cates')); 
+        return view('site.blog', compact('posts', 'cates', 'posts2')); 
+    }
+
+    public function blogcate($id, Request $request){
+        $cates = Category::find($id);
+        $posts = Post::all()->where('cate_id', '=', '$id');
+
+        return view('site.blog-cate', compact('posts', 'cates')); 
+    }
+
+    public function detail($id) {
+        $detail = Post::find($id);
+        $comment = Comment::all()->where('post_id', '=', 'post()->id');
+        return view('site.blog-detail', compact('detail', 'comment'));
     }
 
     // public function show(Request $request){

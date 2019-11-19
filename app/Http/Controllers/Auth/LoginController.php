@@ -41,6 +41,12 @@ class LoginController extends Controller
     //     $this->middleware('guest')->except('logout');
     // }
 
+    function __construct(){
+        if (Auth::check()) {
+            view()->share('nguoidung',Auth::user());
+        }
+    }
+
     public function loginForm(){
         return view('auth.login');
     }
@@ -52,5 +58,31 @@ class LoginController extends Controller
         } 
             # code...
             return view('auth.login');
+        }
+
+    public function getDangnhap(){
+            return view('site.login');
+        }
+    
+    public function postDangnhap(Request $request){
+        if (Auth::attempt(['email' => $request->email,
+                            'password' => $request->password])){
+             return redirect('/');
+        } 
+            # code...
+             return view('site.login');
+        }
+
+        public function getDangky(){
+            return view('site.signup');
+        }
+    
+    public function postDangky(Request $request){
+        if (Auth::attempt(['email' => $request->email,
+                            'password' => $request->password])){
+             return redirect('/dang-nhap');
+        } 
+            # code...
+             return view('site.signup');
         }
 }

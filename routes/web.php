@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 Route::get('/admin', 'PostController@home')->name('home');
 Route::get('/', 'PostController@show')->name('index');
-Route::get('/chi-tiet', 'PostController@detail')->name('detail');
+
 
 Route::get('/post', 'PostController@post')->name('post');
 Route::get('post-add', 'PostController@addForm')->name('post.add');
@@ -113,7 +113,11 @@ Route::get('rateservice-remove/{id}', 'RateserviceController@remove')->name('rat
 
 Route::get('/setting', 'SettingController@setting')->name('setting');
 Route::get('/', 'SettingController@index');
-Route::get('/blog', 'SettingController@blog');
+Route::get('/tin-tuc', 'SettingController@blog');
+Route::get('/tin-tuc-{path}', 'SettingController@blogcate');
+Route::get('/detail-{id}', 'SettingController@detail');
+Route::post('/comment-{id}', 'CommentController@postComment');
+
 Route::get('setting-edit-{id}', 'SettingController@editForm')->name('setting.edit');
 Route::post('setting-edit-{id}', 'SettingController@saveEdit');
 
@@ -121,10 +125,19 @@ Route::get('register', 'Auth\LoginController@registerForm')->name('register');
 Route::post('register', 'Auth\LoginController@postRegister');
 Route::get('login', 'Auth\LoginController@loginForm')->name('login');
 Route::post('login', 'Auth\LoginController@postLogin');
+
+Route::get('dang-nhap', 'Auth\LoginController@getDangnhap')->name('dang-nhap');
+Route::post('dang-nhap', 'Auth\LoginController@postDangnhap');
+
 Route::get('logout', function(){
 	Auth::logout();
 	return redirect()->route('login');
 })->name('logout');
+
+Route::get('dang-xuat', function(){
+	Auth::logout();
+	return redirect()->route('dang-nhap');
+})->name('dang-xuat');
 
 Route::get('forbidden', function(){
 	return view('auth.403');

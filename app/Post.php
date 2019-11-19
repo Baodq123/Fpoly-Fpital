@@ -9,7 +9,7 @@ class Post extends Model
     }
 
     protected $fillable = [
-    	'title', 'description', 'content', 'author',
-    	'publish_date', 'status', 'cate_id'
+    	'title', 'description','slug', 'feature_image', 'content', 'author',
+    	'publish_date', 'status', 'views', 'cate_id'
     ];
 }

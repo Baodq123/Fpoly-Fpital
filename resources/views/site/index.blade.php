@@ -3,10 +3,21 @@
 <div class="container-fluid">
     <div class="row" style="background: #1c4b6b;">
         <div class="container">
+            <div class="row">
             <div class="col-md-6">
                 <i style="color: #fff; font-size: 13px;" class="fas fa-phone-square-alt"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> 0966.976.160</span>
                 <i style="margin-left: 20px; font-size: 13px; color: #fff" class="fas fa-envelope"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> fpital@gmail.com</span>
             </div>
+            <div class="col-md-6" style="text-align:right;">
+                @if (Auth::check())
+                 <span style="font-family: utm avo; font-size: 13px; color: #fff">Xin chào, {{Auth::user()->name}}</span>
+                <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
+                @else
+                <a href="/dang-nhap"><i style="color: #fff; font-size: 13px;"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng nhập</span></a>
+                <a href="/dang-ky"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng ký</span></a>
+                @endif
+            </div>
+        </div>
         </div>
     </div>
 </div>
@@ -41,7 +52,7 @@
                                 <a class="nav-link" href="doctors.html">Bác sĩ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/blog">Tin tức</a>
+                                <a class="nav-link" href="/tin-tuc">Tin tức</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Liên hệ</a>
@@ -457,7 +468,7 @@
             <div class="card">
                 <img src="images/image_4.jpg" class="card-img-top" alt="..." class="img-fluid">
                 <div class="card-body">
-                <h6 class="card-title text-dark font-weight-bold" style="color: #1568ae!important">{{$p->title}}</h6>
+                <a href=""><h6 class="card-title text-dark font-weight-bold" style="color: #1568ae!important">{{$p->title}}</h6></a>
                 <p class="card-text text-dark">{{$p->decscription}}</p>
                     <a href="#" class="btn btn-primary button-call">Đọc tiếp..</a>
                 </div>
@@ -466,10 +477,9 @@
         @endforeach
         <div class="col-md-3">
             <ul class="list-group list-news">
-                <li class="list-group-item" style="border: none;"><i style="margin-right: 8px; color: #d3601a; font-size: 10px;" class="fas fa-circle"></i><a href="#" class="text-dark">Bệnh tay chân miệng ở trẻ và dấu hiệu nhận biết</a></li>
-                <li class="list-group-item" style="border: none;"><i style="margin-right: 8px; color: #d3601a; font-size: 10px;" class="fas fa-circle"></i><a href="#" class="text-dark">Bệnh tay chân miệng ở trẻ và dấu hiệu nhận biết</a></li>
-                <li class="list-group-item" style="border: none;"><i style="margin-right: 8px; color: #d3601a; font-size: 10px;" class="fas fa-circle"></i><a href="#" class="text-dark">Bệnh tay chân miệng ở trẻ và dấu hiệu nhận biết</a></li>
-                <li class="list-group-item" style="border: none;"><i style="margin-right: 8px; color: #d3601a; font-size: 10px;" class="fas fa-circle"></i><a href="#" class="text-dark">Bệnh tay chân miệng ở trẻ và dấu hiệu nhận biết</a></li>
+                @foreach ($posts as $p)
+                    <li class="list-group-item" style="border: none;"><i style="margin-right: 8px; color: #d3601a; font-size: 10px;" class="fas fa-circle"></i><a href="#" class="text-dark">{{$p->title}}</a></li>                 
+                @endforeach
             </ul>
         </div>
     </div>
@@ -505,9 +515,9 @@
                                         </span>
                                     </div>
                                     <div class="text text-center">
-                                    <p style="margin-top: -10px;" class="mb-5">{{$cm->content}}</p>
-                                    <p style="margin-top: -35px;" class="name">{{$cm->name}}</p>
-                                    <span class="position">{{$cm->email}}</span>
+                                    <p style="margin-top: -10px;" class="mb-5">{{$cm->message}}</p>
+                                    <p style="margin-top: -35px;" class="name">{{$cm->user->name}}</p>
+                                    <span class="position">{{$cm->user->email}}</span>
                                     </div>
                                 </div>
                             </div>

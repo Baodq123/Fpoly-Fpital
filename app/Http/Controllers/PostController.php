@@ -33,21 +33,11 @@ class PostController extends Controller
         return view('welcome');
     }
 
-    public function show(){
-        return view('site.index');
-    }
-
     public function post(Request $request){
-        $posts = Post::all();
+        
+        return redirect(route('post'));
+    }
 
-        return view('post.post', [
-            'dsBaiViet' => $posts
-        ]); 
-    }
-    
-    public function detail(){
-        return view('layouts.detail-layout');
-    }
     public function remove($id){
     	DB::beginTransaction();
     	try{
