@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Booking;
+use App\Doctor;
+use App\Service;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\AddBookingRequest;
 use App\Http\Requests\EditBookingRequest;

@@ -114,8 +114,20 @@ Route::get('rateservice-remove/{id}', 'RateserviceController@remove')->name('rat
 Route::get('/setting', 'SettingController@setting')->name('setting');
 Route::get('/', 'SettingController@index');
 Route::get('/tin-tuc', 'SettingController@blog');
+Route::get('/dich-vu', 'SettingController@service');
+Route::get('/bac-si', 'SettingController@doctor');
+Route::get('/lien-he', 'SettingController@contact');
+Route::post('/tim-kiem', 'SettingController@search');
+Route::get('/tai-khoan', 'SettingController@user')->name('tai-khoan');
+Route::post('/chinh-sua-tai-khoan', 'SettingController@postSua');
+Route::get('/chinh-sua-tai-khoan', 'SettingController@getSua')->name('edit-user');
+Route::get('/tim-kiem-ho-so', 'SettingController@searchFile');
+Route::post('/tim-kiem-ho-so', 'SettingController@postFile');
 Route::get('/tin-tuc-{path}', 'SettingController@blogcate');
 Route::get('/detail-{id}', 'SettingController@detail');
+Route::get('/doi-mat-khau', 'SettingController@getPass');
+// Route::get('/doi-mat-khau', 'SettingController@postPass');
+Route::get('/lich-su-kham', 'SettingController@getHis');
 Route::post('/comment-{id}', 'CommentController@postComment');
 
 Route::get('setting-edit-{id}', 'SettingController@editForm')->name('setting.edit');
@@ -128,6 +140,17 @@ Route::post('login', 'Auth\LoginController@postLogin');
 
 Route::get('dang-nhap', 'Auth\LoginController@getDangnhap')->name('dang-nhap');
 Route::post('dang-nhap', 'Auth\LoginController@postDangnhap');
+
+Route::get('dang-ky', 'Auth\LoginController@getDangky')->name('dang-ky');
+Route::post('dang-ky', 'Auth\LoginController@postDangky');
+
+// Route::get('lay-lai-mat-khau', 'Auth\ForgotPasswordController@forgot')->name('lay-lai-mat-khau');
+// Route::post('lay-lai-mat-khau', 'Auth\ForgotPasswordController@postForgot');
+
+Route::post('/', 'SettingController@postBooking')->name('index');
+
+Route::get('/send-mail', 'MailSend@mailsend');
+Route::get('/lay-lai-mat-khau', 'MailSend@forgot');
 
 Route::get('logout', function(){
 	Auth::logout();

@@ -78,11 +78,30 @@ class LoginController extends Controller
         }
     
     public function postDangky(Request $request){
-        if (Auth::attempt(['email' => $request->email,
-                            'password' => $request->password])){
-             return redirect('/dang-nhap');
-        } 
-            # code...
+        $model = new User();
+        if ($request->hasFile('image')) {
+
+            // Lấy tên gốc của ảnh
+        $filename = $request->image->getClientOriginalName();
+            // Thay thế kí tự khoảng trắng bằng ký tự '-'
+        $filename = str_replace(' ', '-', $filename);
+            // Thêm đoạn chuỗi không bị trùng đằng trước tên ảnh
+        $filename = uniqid() . '-' . $filename;
+            // Lưu ảnh và trả về đường dẫn
+        $path = $request->file('image')->storeAs('posts', $filename);
+
+        // storeAs('tên thư mục', 'tên ảnh')
+
+        $model->image = "images/$path";
+    }
+
+        $model->role_id = 0;
+        
+        $model->fill($request->all());
+        $model->password = bcrypt($request->password);
+    	$model->save();
+
+    	// Chuyển đường dẫn
              return view('site.signup');
         }
 }

@@ -3,6 +3,7 @@
 <div class="container-fluid">
 		<div class="row" style="background: #1c4b6b;">
 			<div class="container">
+				<div class="row">
 				<div class="col-md-6">
 					<i style="color: #fff; font-size: 13px;" class="fas fa-phone-square-alt"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> 0966.976.160</span>
 					<i style="margin-left: 20px; font-size: 13px; color: #fff" class="fas fa-envelope"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> fpital@gmail.com</span>
@@ -16,6 +17,7 @@
 					<a href="/dang-ky"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng ký</span></a>
 					@endif
 				</div>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -75,7 +77,7 @@
 				<div class="row slider-text align-items-end">
 					<div class="col-md-7 col-sm-12 ftco-animate mb-5">
 						<p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"><span class="mr-2"><a href="index.html">Trang chủ</a></span> <span>Tin tức</span></p>
-						<h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Tin tức</h1>
+						<h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Tra cứu hồ sơ</h1>
 					</div>
 				</div>
 			</div>
@@ -98,14 +100,14 @@
 						</div>
 					</div>
 					<div class="row">
-                        @foreach ($posts as $p)
+                        @foreach($files as $f)
 						<div class="col-md-12">
 							<div class="col-md-4" style="float: left">
-                            <img style="width: 200px; height: 150px;" src="{{$p->feature_images}}" alt="" class="img-fluid">
 							</div>
 							<div class="col-md-8" style="float: left; text-align: justify;">
-                            <a href="/detail-{{$p->id}}"><h5>{{$p->title}}</h5></a>
-                            <p>{{$p->description}}</p>
+                            <h5>{{$f->code_patient}}</h5>
+							<p>{{$f->name}}</p>
+							<p>{{$f->address}}</p>
 							</div>
                         </div>
                         @endforeach
@@ -114,7 +116,7 @@
 						<div class="col">
 							<div class="block-27">
 								<ul>
-									{{$posts->links()}}
+									{{-- {{$posts->links()}} --}}
 								</ul>
 							</div>
 						</div>
@@ -129,15 +131,7 @@
 </div>
 </form>
 </div> -->
-<div class="sidebar-box ftco-animate">
-	<div class="categories">
-        <h3>Danh mục</h3>
-        @foreach ($cates as $c)
-			<li><a href="/tin-tuc-{{$c->path}}">{{$c->name}} <span>(12)</span></a></li>
-        @endforeach
-	</div>
-</div>
-<div class="sidebar-box ftco-animate" style="margin-top: -50px;">
+{{-- <div class="sidebar-box ftco-animate" style="margin-top: -50px;">
 	<h3>Bài viết được quan tâm</h3>
 	@foreach ($posts2 as $item)
 	<div class="block-21 mb-4 d-flex">
@@ -152,7 +146,7 @@
 </div>
 </div>
 @endforeach
-</div>
+</div> --}}
 
 <div class="sidebar-box ftco-animate" style="margin-top: -70px;">
 	<h3>Videos</h3>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Đăng nhập / Đăng ký</title>
+	<title>Lấy lại mật khẩu</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 @include('layouts.style-login')

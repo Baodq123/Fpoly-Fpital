@@ -129,15 +129,7 @@
 </div>
 </form>
 </div> -->
-<div class="sidebar-box ftco-animate">
-	<div class="categories">
-        <h3>Danh mục</h3>
-        @foreach ($cates as $c)
-			<li><a href="/tin-tuc-{{$c->path}}">{{$c->name}} <span>(12)</span></a></li>
-        @endforeach
-	</div>
-</div>
-<div class="sidebar-box ftco-animate" style="margin-top: -50px;">
+{{-- <div class="sidebar-box ftco-animate" style="margin-top: -50px;">
 	<h3>Bài viết được quan tâm</h3>
 	@foreach ($posts2 as $item)
 	<div class="block-21 mb-4 d-flex">
@@ -152,7 +144,7 @@
 </div>
 </div>
 @endforeach
-</div>
+</div> --}}
 
 <div class="sidebar-box ftco-animate" style="margin-top: -70px;">
 	<h3>Videos</h3>

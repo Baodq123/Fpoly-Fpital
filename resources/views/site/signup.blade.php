@@ -37,25 +37,24 @@
 						<input class="input100" type="password" name="password" placeholder="">
 						<span class="focus-input100"></span>
 					</div>
+					<div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+						<span class="label-input100">Nhập lại mật khẩu</span>
+						<input class="input100" type="password" name="passwordAgain" placeholder="">
+						<span class="focus-input100"></span>
+					</div>
 
 					<div class="flex-sb-m w-full p-b-30">
 					
 						<div>
-							<a href="#" class="txt1">
-								Đăng ký thành viên
+							<a href="/dang-nhap" class="txt1">
+								Bạn đã có tài khoản ?
 							</a>
-						</div>
-						<div>
-							<a href="Forgot Password.html" class="txt1">
-								Quên mật khẩu
-							</a>
-						</div>
-					
+						</div>			
 					</div>
 
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
-							ĐĂNG NHẬP
+							ĐĂNG KÝ
 						</button>
 					</div>
 				</form>

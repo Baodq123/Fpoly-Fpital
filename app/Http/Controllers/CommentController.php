@@ -19,17 +19,15 @@ class CommentController extends Controller
     }
 
     public function postComment($id, Request $request) {
-        $cates = Category::all();
-        $post_id = $id;
-        $detail = Post::find($id)->where('id', 'post_id')->get();
         $comment = new Comment;
+        $post_id = $id;
         $comment->post_id = $post_id;
         $comment->user_id = Auth::user()->id;
         $comment->message = $request->message;
         $comment->status = 0;
         $comment->save();
 
-        return redirect("detail-{$id}", compact('cates'));
+        return redirect("detail-{$id}");
     }
 
     public function remove($id){

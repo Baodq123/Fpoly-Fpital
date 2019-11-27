@@ -5,7 +5,15 @@ class Booking extends Model
 {
     protected $table = "booking";
 
+    public function service(){
+    	return $this->belongsTo('App\Service', 'service_id', 'id');
+    }
+
+    public function doctor(){
+    	return $this->belongsTo('App\Post', 'doctor_id', 'id');
+    }
+
     protected $fillable = [
-    	'name', 'email', 'phone', 'publish_date', 'major', 'note',
+    	'name', 'email', 'phone', 'date', 'time', 'service_id', 'doctor_id', 'status',
     ];
 }

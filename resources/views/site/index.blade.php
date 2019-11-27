@@ -10,7 +10,15 @@
             </div>
             <div class="col-md-6" style="text-align:right;">
                 @if (Auth::check())
-                 <span style="font-family: utm avo; font-size: 13px; color: #fff">Xin chào, {{Auth::user()->name}}</span>
+                <div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
+                        <button class="dropbtnn" >Xin chào, {{Auth::user()->name}}</button>
+                        <div class="dropdown-contentt">
+                            <a href="/tai-khoan">Tài khoản</a>
+                            <a href="">Tìm kiếm hồ sơ</a>
+                            <a href="/doi-mat-khau">Đổi mật khẩu</a>
+                            <a href="/lich-su-kham">Lịch sử khám</a>
+                        </div>
+                    </div>
                 <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
                 @else
                 <a href="/dang-nhap"><i style="color: #fff; font-size: 13px;"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng nhập</span></a>
@@ -46,26 +54,30 @@
                                 <a class="nav-link" href="about.html">Chúng tôi</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="services.html">Dịch vụ</a>
+                                <a class="nav-link" href="/dich-vu">Dịch vụ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="doctors.html">Bác sĩ</a>
+                                <a class="nav-link" href="/bac-si">Bác sĩ</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/tin-tuc">Tin tức</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Liên hệ</a>
+                                <a class="nav-link" href="/tim-kiem-ho-so">Tra cứu hồ sơ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/lien-he">Liên hệ</a>
                             </li>
                         </ul>
         <!-- 				<form class="form-search">
                             <input type="search" placeholder="Search" aria-label="Search">
                             <a href="#"><i class="fas fa-search"></i></a>
                         </form> -->
-                        <form class="form-inline form-search my-2 my-lg-0">
-                          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                       <!--    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-                          <a href="#"><i class="fas fa-search"></i></a>
+                        <form action="/tim-kiem" method="POST" class="form-inline form-search my-2 my-lg-0">
+                            @csrf
+                          <input name="tukhoa" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                          {{-- <a href="#"><i class="fas fa-search"></i></a> --}}
                         </form>
                     </div>
                 </nav>
@@ -140,18 +152,17 @@
             </div>
             <div class="col-md-8 color-3 p-4">
                 <h3 class="mb-2">Đặt lịch khám</h3>
-                <form action="#" class="appointment-form">
+                <form action="/" method="POST" class="appointment-form">
+                    @csrf
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="select-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                    <select name="" id="" class="form-control">
-                                        <option value="" class="text-dark">Chuyên khoa</option>
-                                        <option value="" class="text-dark">Teeth Whitening</option>
-                                        <option value="" class="text-dark">Teeth CLeaning</option>
-                                        <option value="" class="text-dark">Quality Brackets</option>
-                                        <option value=""class="text-dark">Modern Anesthetic</option>
+                                    <select name="service_id" id="" class="form-control">
+                                        @foreach ($service as $s)                                            
+                                            <option value="{{$s->id}}" class="text-dark">{{$s->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -159,13 +170,13 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="icon"><span class="icon-user"></span></div>
-                                <input type="text" class="form-control" id="appointment_name" placeholder="Tên">
+                                <input type="text" name="name" class="form-control" id="appointment_name" placeholder="Tên">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="icon"><span class="icon-paper-plane"></span></div>
-                                <input type="text" class="form-control" id="appointment_email" placeholder="Email">
+                                <input type="text" name="email" class="form-control" id="appointment_email" placeholder="Email">
                             </div>
                         </div>
                     </div>
@@ -173,24 +184,34 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="icon"><span class="ion-ios-calendar"></span></div>
-                                <input type="text" class="form-control appointment_date" placeholder="Ngày khám">
+                                <input type="date" name="date" class="form-control" placeholder="Ngày khám">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="icon"><span class="ion-ios-clock"></span></div>
-                                <input type="text" class="form-control appointment_time" placeholder="Thời gian">
+                                <input type="time" name="time" class="form-control" placeholder="Thời gian">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="icon"><span class="icon-phone2"></span></div>
-                                <input type="text" class="form-control" id="phone" placeholder="Số điện thoại">
+                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Số điện thoại">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div class="icon"><span class="icon-user"></span></div>
+                                <select name="doctor_id" id="" class="form-control">
+                                        @foreach ($doctor as $d)                                            
+                                            <option value="{{$d->id}}" class="text-dark">{{$d->name}}</option>
+                                        @endforeach
+                                    </select>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button style="color: white" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Đặt lịch khám</button>
+                        <button style="color: white" class="btn btn-outline-primary my-2 my-sm-0" type="submit"><a style="color: white;" href="/send-mail">Đặt lịch khám</a></button>
                     </div>
                 </form>
             </div>
@@ -551,12 +572,12 @@
     <div class="ftco-footer-widget mb-4 ml-md-5">
         <h2 class="ftco-heading-2">Menu</h2>
         <ul class="list-unstyled">
-            <li><a href="#" class="py-2 d-block">Chúng tôi</a></li>
-            <li><a href="#" class="py-2 d-block">Chuyên khoa</a></li>
-            <li><a href="#" class="py-2 d-block">Bác sĩ</a></li>
-            <li><a href="#" class="py-2 d-block">Tin tức</a></li>
-            <li><a href="#" class="py-2 d-block">Liên hệ</a></li>
-        </ul>
+                <li><a href="/" class="py-2 d-block">Trang chủ</a></li>
+                <li><a href="#" class="py-2 d-block">Chúng tôi</a></li>
+                <li><a href="/tin-tuc" class="py-2 d-block">Tin tức</a></li>
+                <li><a href="/bac-si" class="py-2 d-block">Bác sĩ</a></li>
+                <li><a href="/lien-he" class="py-2 d-block">Liên hệ</a></li>
+            </ul>
     </div>
 </div>
 <div class="col-md-4">

@@ -25,7 +25,7 @@
 	<div class="container">
 		<div class="row first-header text-center margin-auto" style="margin-left: 350px;">
 			<div class="col-md-6 xs-12">
-				<a href="index.html"><img src="Fpital/images/fpital-logo.png" alt="" width="200px;"></a>
+				<a href="/"><img src="Fpital/images/fpital-logo.png" alt="" width="200px;"></a>
 			</div>
 		</div>
 	</div>
@@ -41,22 +41,22 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto" style="font-family: utm avo;">
 					<li class="nav-item">
-						<a class="nav-link" href="index.html">Trang chủ</a>
+						<a class="nav-link" href="/">Trang chủ</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="about.html">Chúng tôi</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="services.html">Dịch vụ</a>
+						<a class="nav-link" href="/dich-vu">Dịch vụ</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="doctors.html">Bác sĩ</a>
+						<a class="nav-link" href="/bac-si">Bác sĩ</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="blog.html">Tin tức</a>
+						<a class="nav-link" href="/tin-tuc">Tin tức</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="contact.html">Liên hệ</a>
+						<a class="nav-link" href="/lien-he">Liên hệ</a>
 					</li>
 				</ul>
 <!-- 				<form class="form-search">
@@ -307,12 +307,12 @@
 				<div class="ftco-footer-widget mb-4 ml-md-5">
 					<h2 class="ftco-heading-2">Menu</h2>
 					<ul class="list-unstyled">
-						<li><a href="#" class="py-2 d-block">Chúng tôi</a></li>
-						<li><a href="#" class="py-2 d-block">Chuyên khoa</a></li>
-						<li><a href="#" class="py-2 d-block">Bác sĩ</a></li>
-						<li><a href="#" class="py-2 d-block">Tin tức</a></li>
-						<li><a href="#" class="py-2 d-block">Liên hệ</a></li>
-					</ul>
+							<li><a href="/" class="py-2 d-block">Trang chủ</a></li>
+							<li><a href="#" class="py-2 d-block">Chúng tôi</a></li>
+							<li><a href="/tin-tuc" class="py-2 d-block">Tin tức</a></li>
+							<li><a href="/bac-si" class="py-2 d-block">Bác sĩ</a></li>
+							<li><a href="/lien-he" class="py-2 d-block">Liên hệ</a></li>
+						</ul>
 				</div>
 			</div>
 			<div class="col-md-4">

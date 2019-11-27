@@ -1632,6 +1632,9 @@ select.form-control:focus::-ms-value {
   padding-bottom: calc(0.25rem + 1px);
   font-size: 0.875rem;
   line-height: 1.5; }
+  .form-control{
+    height: 10px;
+  }
 
 .form-control-plaintext {
   display: block;
@@ -7825,6 +7828,7 @@ h1, h2, h3, h4, h5,
       background: -o-linear-gradient(315deg, #2f89fc 0%, #2cbcbc 100%);
       background: linear-gradient(135deg, #2f89fc 0%, #2cbcbc 100%);
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f89fc', endColorstr='#00dc94', GradientType=1 );
+      -webkit-background-clip: text;
       -webkit-text-fill-color: transparent; }
   .services .media-body h3 {
     font-size: 20px; }
@@ -8466,6 +8470,7 @@ textarea.form-control {
   background: -o-linear-gradient(315deg, #2f89fc 0%, #2cbcbc 100%);
   background: linear-gradient(135deg, #2f89fc 0%, #2cbcbc 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f89fc', endColorstr='#00dc94', GradientType=1 );
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; }
   @media (max-width: 767.98px) {
     .heading-section h2 {
@@ -8477,6 +8482,7 @@ textarea.form-control {
 .heading-section.heading-section-white h2 {
   font-size: 30px;
   background: #fff;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; }
 
 .heading-section.heading-section-white p {
@@ -8602,6 +8608,7 @@ textarea.form-control {
 .mfp-with-zoom .mfp-container,
 .mfp-with-zoom.mfp-bg {
   opacity: 0;
+  -webkit-backface-visibility: hidden;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
@@ -9415,3 +9422,132 @@ textarea.form-control {
 .list-news li a:hover{
   color: #1568ae!important;
 }
+    /* <style>* {
+      margin: 0;
+      padding: 0;
+    }
+    
+    /*==Style cơ bản cho website==*/
+    /* body {
+      font-family: sans-serif;
+      color: #333;
+    } */
+    
+    /*==Style cho menu===*/
+    /* #menu ul {
+      background: #1F568B;
+      list-style-type: none;
+      text-align: center;
+    } */
+    /* #menu li {
+      color: #f1f1f1;
+      display: inline-block;
+      width: 150px;
+    
+      line-height: 20px;
+      margin-left: -5px;
+    }
+    #menu a {
+      text-decoration: none;
+      color: #fff;
+      display: block;
+    }
+    #menu a:hover {
+      background: #F1F1F1;
+      color: #333;
+    }
+    #menu li {
+    position: relative;
+    }.sub-menu {
+    display: none;
+    position: absolute;
+    }#menu li:hover .sub-menu {
+    display: block;
+    }.sub-menu li {
+    margin-left: 0 !important;
+    }
+    /* </style> */ 
+    .dropbtn {
+      background-color: #3089fc;
+      color: white;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #3089fc;
+     
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 130px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+     
+    }
+    
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #ddd;}
+    
+    .dropdown:hover .dropdown-content {display: block;}
+    
+    .dropdown:hover .dropbtn {background:#ffff; color:#3089fc ;}
+    /* list-history */
+    .dropbtnn {
+      font-size: 13px;
+      background:#1c4b6b;
+      border:none;
+      color: #FFF;
+    }
+    .dropdownn {
+      position: relative;
+      display: inline-block;
+        
+    }
+    
+    .dropdown-contentt {
+      display: none;
+      position: absolute;
+      min-width: 100%;
+      box-shadow: 0px 8px 16px 0px #fff;
+      z-index: 1;
+    
+      background: #1c4b6b;
+    }
+    
+    
+    .dropdown-contentt a {
+    
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      color: #FFF;
+    }
+    
+    .dropdown-contentt a:hover {background-color: #1b7dfd;}
+    
+    .dropdownn:hover .dropdown-contentt {display: block;}
+    
+    .dropdownn:hover .dropbtn {background:#ffff; color:#3089fc ;}
+
+    .btn-primaryy {
+      color: #212529;
+      background-color: #78d5ef;
+      border-color: #78d5ef; }
+      .btn-primaryy:hover {
+        color: #212529;
+        background-color: #56caeb;
+        border-color: #4ac7ea; }
