@@ -125,9 +125,12 @@ Route::get('/tim-kiem-ho-so', 'SettingController@searchFile');
 Route::post('/tim-kiem-ho-so', 'SettingController@postFile');
 Route::get('/tin-tuc-{path}', 'SettingController@blogcate');
 Route::get('/detail-{id}', 'SettingController@detail');
+Route::get('/chi-tiet-bac-si-{id}', 'SettingController@detailDoctor');
+Route::get('/chi-tiet-dich-vu-{id}', 'SettingController@detailService');
 Route::get('/doi-mat-khau', 'SettingController@getPass');
 // Route::get('/doi-mat-khau', 'SettingController@postPass');
-Route::get('/lich-su-kham', 'SettingController@getHis');
+Route::get('/lich-su-kham-{id}', 'SettingController@getHis');
+Route::get('/chi-tiet-lich-su-{id}', 'SettingController@History');
 Route::post('/comment-{id}', 'CommentController@postComment');
 
 Route::get('setting-edit-{id}', 'SettingController@editForm')->name('setting.edit');

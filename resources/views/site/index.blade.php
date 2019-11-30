@@ -16,7 +16,7 @@
                             <a href="/tai-khoan">Tài khoản</a>
                             <a href="">Tìm kiếm hồ sơ</a>
                             <a href="/doi-mat-khau">Đổi mật khẩu</a>
-                            <a href="/lich-su-kham">Lịch sử khám</a>
+                            <a href="/lich-su-kham-{id}">Lịch sử khám</a>
                         </div>
                     </div>
                 <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
@@ -160,7 +160,8 @@
                                 <div class="select-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                     <select name="service_id" id="" class="form-control">
-                                        @foreach ($service as $s)                                            
+                                        <option class="text-dark" value="">Chọn dịch vụ</option> 
+                                        @foreach ($service as $s)                                         
                                             <option value="{{$s->id}}" class="text-dark">{{$s->name}}</option>
                                         @endforeach
                                     </select>
@@ -203,9 +204,10 @@
                             <div class="form-group">
                                 <div class="icon"><span class="icon-user"></span></div>
                                 <select name="doctor_id" id="" class="form-control">
-                                        @foreach ($doctor as $d)                                            
-                                            <option value="{{$d->id}}" class="text-dark">{{$d->name}}</option>
-                                        @endforeach
+                                    <option class="text-dark" value="">Chọn bác sĩ</option> 
+                                    @foreach ($doctor as $d)                                            
+                                        <option value="{{$d->id}}" class="text-dark">{{$d->name}}</option>
+                                    @endforeach
                                     </select>
                             </div>
                         </div>
@@ -235,7 +237,7 @@
                         <img src="images/noibat_4.jpg" width="220px;" alt="">
                     </div>
                     <div class="media-body p-2 mt-3">
-                    <h3 class="heading" style="color: #1568ae">{{$sv->name}}</h3>
+                    <h3 class="heading" style="color: #1568ae"><a href="/chi-tiet-dich-vu-{{$sv->id}}">{{$sv->name}}</a></h3>
                     <p>{{$sv->content}}</p>
                         <button class="btn btn-primary button-call">Xem thêm..</button>
                     </div>
@@ -300,7 +302,7 @@
                 <div class="staff">
                     <div class="img mb-4" style="background-image: url(images/person_5.jpg);"></div>
                     <div class="info text-center">
-                    <h3><a href="teacher-single.html">{{$dt->name}}</a></h3>
+                    <h3><a href="/chi-tiet-bac-si-{{$dt->id}}">{{$dt->name}}</a></h3>
                     <span class="position">{{$dt->major}}</span>
                         <div class="text">
                         <p>{{$dt->info}}</p>
@@ -558,9 +560,15 @@
     </div>
     <div class="block-23 mb-3">
         <ul>
-            <li><span class="icon icon-map-marker"></span><span class="text">Số 33 Nguyễn Hoàng, P. Mỹ Đình 2, Q. Nam Từ Liêm, Hà Nội</span></li>
-            <li><a href="#"><span class="icon icon-phone"></span><span class="text">0966.976.160</span></a></li>
-            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">fpital@gmail.com</span></a></li>
+            @foreach ($settings as $st)
+            <li><span class="icon icon-map-marker"></span><span class="text">{{$st->address}}</span></li>
+            @endforeach
+            @foreach ($settings as $st)
+            <li><a href="#"><span class="icon icon-phone"></span><span class="text">{{$st->hotline}}</span></a></li>
+            @endforeach
+            @foreach ($settings as $st)
+            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">{{$st->email}}</span></a></li>
+            @endforeach
         </ul>
     </div>
     <ul class="ftco-footer-social list-unstyled float-md-left float-lft ">

@@ -1,4 +1,4 @@
-@extends('layouts.blog-detail')
+@extends('layouts.detail-service')
 @section('container')
      
 <div class="container-fluid">
@@ -78,8 +78,8 @@
 			<div class="container" data-scrollax-parent="true">
 				<div class="row slider-text align-items-end">
 					<div class="col-md-7 col-sm-12 ftco-animate mb-5">
-						<p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"><span class="mr-2"><a href="index.html">Trang chủ</a></span> <span>Chi tiết bài viết</span></p>
-						<h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Chi tiết bài viết</h1>
+						<p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"><span class="mr-2"><a href="index.html">Trang chủ</a></span> <span>Chi tiết dịch vụ</span></p>
+						<h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Chi tiết dịch vụ</h1>
 					</div>
 				</div>
 			</div>
@@ -89,66 +89,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ftco-animate">
-                <h2 class="mb-3 font-weight-bold">{{$detail->title}}</h2>
-                <p class="font-weight-bold">{{$detail->description}}</p>
+                <h2 class="mb-3 font-weight-bold">{{$service1->name}}</h2>
+                <p class="font-weight-bold">{{$service1->content}}</p>
 					<p>
 						<img src="Fpital/images/image_4.jpg" alt="" class="img-fluid">
                     </p>
-                <p>{{$detail->content}}</p>
-					<div class="tag-widget post-tag-container mb-5 mt-5">
-						<div class="tagcloud" style="margin-top: -30px;">
-							<a href="#" class="tag-cloud-link"><i class="fas fa-exclamation" style="color: red"></i> Báo lỗi bài viết</a>
-						</div>
-					</div>
-					<div class="pt-5 mt-5">
-						<h3 class="mb-5" style="margin-top: -70px;">
-						<?php 
-							$countcomment = DB::table('comments')->count();
-							echo $countcomment;	
-						?>
-						Bình luận
-						</h3>
-						<ul class="comment-list">
-                            @foreach ($comment as $cm)  
-							<li class="comment">
-								<div class="vcard bio">
-								<img src="{{$cm->user->image}}" alt="Image placeholder">
-								</div>
-								<div class="comment-body">
-                                <h3>{{$cm->user->name}}</h3>
-								<div class="meta">{{$cm->created_at}}</div>
-                                    <p>{{$cm->message}}</p>
-									<p><a href="#" class="reply">Reply</a></p>
-								</div>
-                            </li>
-							@endforeach	
-						</ul>
-						<div class="row mt-5">
-								<div class="col">
-									<div class="block-27">
-										<ul>
-											{{$comment->links()}}
-										</ul>
-									</div>
-								</div>
-							</div>
-                        @if (Auth::check())
-						<div class="comment-form-wrap">
-							<h3>Bình luận</h3>
-                            <form action="comment-{{$detail->id}}" method="post" role="form">
-                                @csrf
-								<div class="form-group">
-									<textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Nhập nội dung bình luận.."></textarea>
-								</div>
-								<input type="number" name="status" value="0" hidden>
-								<div class="form-group">
-									<input type="submit" value="Bình luận" class="btn btn-primary button-call py-3 px-5">
-								</div>
-							</form>
-                        </div>
-                        @else
-                        @endif
-					</div>
+                <p>{{$service1->price}}</p>
 				</div> 
 				<div class="col-md-4 sidebar ftco-animate">
 <!-- <div class="sidebar-box">
@@ -162,116 +108,33 @@
 <div class="sidebar-box ftco-animate">
 	<div class="categories">
 		<h3>Danh mục</h3>
-		<li><a href="#">Tin tức y khoa <span>(12)</span></a></li>
+		@foreach ($cates3 as $c)
+		<li><a href="#">{{$c->name }}
+		<span>
+				<?php 
+				$countcomment = DB::table('posts')->count();
+				echo $countcomment;	
+			?>
+		</span></a></li>
+		@endforeach
 	</div>
-</div>
-
-<div class="sidebar-box ftco-animate" style="margin-top: -50px;">
-	<h3>Bài viết có liên quan</h3>
-	<div class="block-21 mb-4 d-flex">
-		<a class="blog-img mr-4" style="background-image: url(Fpital/images/image_1.jpg);"></a>
-		<div class="text">
-			<h5 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h5>
-<!-- <div class="meta">
-<div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-<div><a href="#"><span class="icon-person"></span> Admin</a></div>
-<div><a href="#"><span class="icon-chat"></span> 19</a></div>
-</div> -->
-</div>
-</div>
-<div class="block-21 mb-4 d-flex">
-	<a class="blog-img mr-4" style="background-image: url(Fpital/images/image_2.jpg);"></a>
-	<div class="text">
-		<h5 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h5>
-<!-- <div class="meta">
-<div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-<div><a href="#"><span class="icon-person"></span> Admin</a></div>
-<div><a href="#"><span class="icon-chat"></span> 19</a></div>
-</div> -->
-</div>
-</div>
-<div class="block-21 mb-4 d-flex">
-	<a class="blog-img mr-4" style="background-image: url(Fpital/images/image_3.jpg);"></a>
-	<div class="text">
-		<h5 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h5>
-<!-- <div class="meta">
-<div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-<div><a href="#"><span class="icon-person"></span> Admin</a></div>
-<div><a href="#"><span class="icon-chat"></span> 19</a></div>
-</div> -->
-</div>
-</div>
-<div class="block-21 mb-4 d-flex">
-	<a class="blog-img mr-4" style="background-image: url(Fpital/images/image_3.jpg);"></a>
-	<div class="text">
-		<h5 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h5>
-<!-- <div class="meta">
-<div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-<div><a href="#"><span class="icon-person"></span> Admin</a></div>
-<div><a href="#"><span class="icon-chat"></span> 19</a></div>
-</div> -->
-</div>
-</div>
-<div class="block-21 mb-4 d-flex">
-	<a class="blog-img mr-4" style="background-image: url(Fpital/images/image_3.jpg);"></a>
-	<div class="text">
-		<h5 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h5>
-	</div>
-</div>
 </div>
 
 <div class="sidebar-box ftco-animate" style="margin-top: -50px;">
 	<h3>Bài viết được quan tâm</h3>
+	@foreach ($post3 as $p)
 	<div class="block-21 mb-4 d-flex">
 		<a class="blog-img mr-4" style="background-image: url(Fpital/images/image_1.jpg);"></a>
 		<div class="text">
-			<h5 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h5>
+			<h5 class="heading"><a href="#">{{$p->title}}</a></h5>
 <!-- <div class="meta">
 <div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
 <div><a href="#"><span class="icon-person"></span> Admin</a></div>
 <div><a href="#"><span class="icon-chat"></span> 19</a></div>
 </div> -->
 </div>
-</div>
-<div class="block-21 mb-4 d-flex">
-	<a class="blog-img mr-4" style="background-image: url(Fpital/images/image_2.jpg);"></a>
-	<div class="text">
-		<h5 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h5>
-<!-- <div class="meta">
-<div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-<div><a href="#"><span class="icon-person"></span> Admin</a></div>
-<div><a href="#"><span class="icon-chat"></span> 19</a></div>
-</div> -->
-</div>
-</div>
-<div class="block-21 mb-4 d-flex">
-	<a class="blog-img mr-4" style="background-image: url(Fpital/images/image_3.jpg);"></a>
-	<div class="text">
-		<h5 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h5>
-<!-- <div class="meta">
-<div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-<div><a href="#"><span class="icon-person"></span> Admin</a></div>
-<div><a href="#"><span class="icon-chat"></span> 19</a></div>
-</div> -->
-</div>
-</div>
-<div class="block-21 mb-4 d-flex">
-	<a class="blog-img mr-4" style="background-image: url(Fpital/images/image_3.jpg);"></a>
-	<div class="text">
-		<h5 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h5>
-<!-- <div class="meta">
-<div><a href="#"><span class="icon-calendar"></span> July 12, 2018</a></div>
-<div><a href="#"><span class="icon-person"></span> Admin</a></div>
-<div><a href="#"><span class="icon-chat"></span> 19</a></div>
-</div> -->
-</div>
-</div>
-<div class="block-21 mb-4 d-flex">
-	<a class="blog-img mr-4" style="background-image: url(Fpital/images/image_3.jpg);"></a>
-	<div class="text">
-		<h5 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h5>
-	</div>
-</div>
+</div>	
+@endforeach
 </div>
 
 <div class="sidebar-box ftco-animate" style="margin-top: -70px;">

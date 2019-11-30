@@ -79,9 +79,9 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Nhập mã hồ sơ</label>
                     <div class="col-sm-10">
-                        <input type="text"
-                            style="border: 1px solid #cccccc;width:80%;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                             class="form-control-plaintext" name="tk" id="staticEmail" value=" ">
+                        <input type="text" style="border: 1px solid #cccccc;width:80%;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
+                             class="form-control-plaintext" name="tk" id="tk" value=" ">
+                            
                     </div>
                 </div>
                 <div class="form-group row">

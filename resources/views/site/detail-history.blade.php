@@ -11,20 +11,22 @@
                         style="font-family: utm avo; font-size: 13px; color: #fff"> fpital@gmail.com</span>
                 </div>
                 <div class="col-md-6" style="text-align:right;">
-                    <!-- Basic dropdown -->
-                    <div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
-                        <button class="dropbtnn">Xin chào, Văn Tuấn</button>
-                        <div class="dropdown-contentt">
-                            <a href="user-information.html">Tài khoản</a>
-                            <a href="change_password.html">Đổi mật khẩu</a>
-                            <a href="list-history.html">Lịch sử khám</a>
-                        </div>
+                        @if (Auth::check())
+                        <div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
+                                <button class="dropbtnn" >Xin chào, {{Auth::user()->name}}</button>
+                                <div class="dropdown-contentt">
+                                    <a href="/tai-khoan">Tài khoản</a>
+                                    <a href="">Tìm kiếm hồ sơ</a>
+                                    <a href="/doi-mat-khau">Đổi mật khẩu</a>
+                                    <a href="/lich-su-kham">Lịch sử khám</a>
+                                </div>
+                            </div>
+                        <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
+                        @else
+                        <a href="/dang-nhap"><i style="color: #fff; font-size: 13px;"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng nhập</span></a>
+                        <a href="/dang-ky"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng ký</span></a>
+                        @endif
                     </div>
-                    <!-- Basic dropdown -->
-
-                    <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span
-                            style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
-                </div>
             </div>
         </div>
     </div>
@@ -89,7 +91,7 @@
             <form>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-6 col-form-label" style="font-weight:bold;">THÔNG TIN
-                        LỊCH SỬ KHÁM (15 - 02 - 2019)</label>
+                        LỊCH SỬ KHÁM ( {{$histories->date}} )</label>
 
                 </div>
                 <div class="form-group row">
@@ -97,7 +99,7 @@
                     <div class="col-sm-10">
                         <input type="text"
                             style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" Trần Văn Tuấn">
+                            readonly class="form-control-plaintext" id="staticEmail" value=" {{$histories->code_patient}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -106,29 +108,7 @@
                         <input type="text"
                             style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
                             readonly class="form-control-plaintext" id="staticEmail"
-                            value=" tuantvph01311@gmail.com">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Ngày sinh</label>
-                    <div class="col-sm-10">
-                        <input type="text"
-                            style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" 0999696969">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Giới tính</label>
-                    <div class="col-sm-5">
-                        <input type="text"
-                            style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" Từ Liêm - Hà Nội">
-                    </div>
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Dân tộc</label>
-                    <div class="col-sm-3">
-                        <input type="text"
-                            style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" Kinh">
+                            value=" {{(Auth::user()->name)}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -136,22 +116,7 @@
                     <div class="col-sm-10">
                         <input type="text"
                             style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" 0999696969">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Đối tượng</label>
-                    <div class="col-sm-4">
-                        <input type="text"
-                            style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail"
-                            value=" Bảo hiểm y tế Quân Đội">
-                    </div>
-
-                    <div class="col-sm-6">
-                        <input type="text"
-                            style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" 094535167948324">
+                            readonly class="form-control-plaintext" id="staticEmail" value=" {{(Auth::user()->phone)}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -159,7 +124,7 @@
                     <div class="col-sm-10">
                         <input type="text"
                             style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" 15/02/2019">
+                            readonly class="form-control-plaintext" id="staticEmail" value=" {{$histories->date}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -167,7 +132,7 @@
                     <div class="col-sm-10">
                         <input type="text"
                             style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" Đỗ Quốc Bảo">
+                            readonly class="form-control-plaintext" id="staticEmail" value=" {{$histories->doctor}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -175,7 +140,7 @@
                     <div class="col-sm-10">
                         <input type="text"
                             style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" Viêm tai">
+                            readonly class="form-control-plaintext" id="staticEmail" value=" {{$histories->kind_disease}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -183,7 +148,7 @@
                     <div class="col-sm-10">
                         <input type="text"
                             style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" Đang khám">
+                            readonly class="form-control-plaintext" id="staticEmail" value=" {{$histories->status}}">
                     </div>
                 </div><br>
                 <div class="form-group row">

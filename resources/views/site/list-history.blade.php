@@ -1,4 +1,4 @@
-@extends('layouts.search-file')
+@extends('layouts.list-history')
 @section('container')
 <div class="container-fluid">
 		<div class="row" style="background: #1c4b6b;">
@@ -11,21 +11,22 @@
 							style="font-family: utm avo; font-size: 13px; color: #fff"> fpital@gmail.com</span>
 					</div>
 					<div class="col-md-6" style="text-align:right;">
-						<!-- Basic dropdown -->
-						<div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
-                                <button class="dropbtnn" >Xin chào, {{Auth::user()->name}}</button>
-                                <div class="dropdown-contentt">
-                                    <a href="/tai-khoan">Tài khoản</a>
-                                    <a href="">Tìm kiếm hồ sơ</a>
-                                    <a href="change_password.html">Đổi mật khẩu</a>
-                                    <a href="list-history.html">Lịch sử khám</a>
-                                </div>
+							@if (Auth::check())
+							<div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
+									<button class="dropbtnn" >Xin chào, {{Auth::user()->name}}</button>
+									<div class="dropdown-contentt">
+										<a href="/tai-khoan">Tài khoản</a>
+										<a href="">Tìm kiếm hồ sơ</a>
+										<a href="/doi-mat-khau">Đổi mật khẩu</a>
+										<a href="/lich-su-kham">Lịch sử khám</a>
+									</div>
+								</div>
+							<a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
+							@else
+							<a href="/dang-nhap"><i style="color: #fff; font-size: 13px;"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng nhập</span></a>
+							<a href="/dang-ky"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng ký</span></a>
+							@endif
 						</div>
-						<!-- Basic dropdown -->
-
-						<a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span
-								style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -64,63 +65,39 @@
 
 
 	<div class="container">
-			<div class="row">
-				<div class="col-md-3"><img src="" alt="..." class="img-thumbnail"></div>
-				<div class="col-md-9" style="height: 400px;">
-						<div class="form-group row">
-								<label for="staticEmail" class="col-sm-6 col-form-label" style="font-weight:bold;">THÔNG TIN HỒ SƠ</label>
-							</div>
-								<div class="form-group row">
-									<label for="staticEmail" class="col-sm-2 col-form-label">Họ tên</label>
-									<div class="col-sm-10">
-										<input type="text"
-											style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-											readonly class="form-control-plaintext" id="staticEmail" value=" {{$item->name}}">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-									<div class="col-sm-10">
-										<input type="text"
-											style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-											readonly class="form-control-plaintext" id="staticEmail" value=" abc@gmail.com">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="staticEmail" class="col-sm-2 col-form-label">Số điện thoại</label>
-									<div class="col-sm-10">
-										<input type="text"
-											style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-											readonly class="form-control-plaintext" id="staticEmail" value=" 0986052759">
-									</div>
-								</div>
-								<div class="form-group row">
-										<label for="staticEmail" class="col-sm-2 col-form-label">Tình trạng bệnh</label></label>
-										<div class="col-sm-10">
-											<input type="text"
-												style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-												readonly class="form-control-plaintext" id="staticEmail" value=" Viêm lõ đít">
-										</div>
-								</div>
-								<div class="form-group row">
-										<label for="staticEmail" class="col-sm-2 col-form-label">Bác sĩ</label>
-										<div class="col-sm-10">
-											<input type="text"
-												style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-												readonly class="form-control-plaintext" id="staticEmail" value=" Bảo">
-										</div>
-								</div>
-								{{-- <div class="form-group row">
-									<label for="staticEmail" class="col-sm-2 col-form-label">Địa chỉ</label>
-									<div class="col-sm-10">
-										<input type="text"
-											style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-											readonly class="form-control-plaintext" id="staticEmail" value=" {{$user->address}}">
-									</div>
-								</div> --}}
-				</div>
+		
+		<div class="row justify-content-center mb-2 pb-2">
+			<div class="col-md-7 text-center ftco-animate">
+				<h2 class="mb-2" class="font-weight-bold"
+					style="font-family: UTM Avo; font-weight: bold; color: #4e4e4e!important;font-size: 30px;">Danh sách lịch sử khám</h2>
+				<!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
 			</div>
-	
+		</div>
+		<table class="table table-striped">
+			<thead>
+			  <tr>
+				<th scope="col">STT</th>
+				<th scope="col">Mã bệnh nhân</th>
+				<th scope="col">Địa chỉ</th>
+				<th scope="col">Ngày khám</th>
+				<th scope="col">Tình trạng bệnh</th>
+				<th scope="col">Trạng thái</th>
+			  </tr>
+			</thead>
+			<tbody>
+				@foreach ($histories as $h)
+				<tr>
+				<th scope="row">{{$h->id}}</th>
+				<td>{{$h->code_patient}}</td>
+				<td>{{$h->address}}</td>
+				<td>{{$h->date}}</td>
+				<td>{{$h->kind_disease}}</td>
+				<td><a href="/chi-tiet-lich-su-{{$h->id}}">{{$h->status}}</a></td>
+			  </tr>
+			  @endforeach
+			</tbody>
+			
+		  </table>
 	</div>
 
 

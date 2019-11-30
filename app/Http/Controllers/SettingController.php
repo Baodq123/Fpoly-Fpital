@@ -6,6 +6,7 @@ use App\Setting;
 use App\Doctor;
 use App\Service;
 use App\Post;
+use App\History;
 use App\Booking;
 use App\Comment;
 use App\Category;
@@ -38,8 +39,9 @@ class SettingController extends Controller
         $doctor = Doctor::all();
         $posts = Post::all()->take(3);
         $comment = Comment::all()->take(4);
+        $settings = Setting::all();
 
-        return view('site.index', compact('service', 'doctor', 'posts', 'comment'));
+        return view('site.index', compact('service', 'doctor', 'posts', 'comment', 'settings'));
     }
 
     public function service() {
@@ -60,13 +62,13 @@ class SettingController extends Controller
         return view('site.user-info', compact('user'));
     }
     
-    public function getSua() {
-        $user = Auth::user();
+    public function getSua($id) {
+        $user = User::find($id);
         return view('site.edit-user', compact('user'));
     }
 
     public function postSua(Request $request) {
-        $user = Auth::user();
+        $user = User::find($request->id);
         $user->fill($request->all());
         $user->save();
         return redirect(route('tai-khoan'));
@@ -77,9 +79,15 @@ class SettingController extends Controller
         return view('site.change-password', compact('user'));
     }
 
-    public function getHis() {
-        $user = Auth::user();
-        return view('site.detail-history', compact('user'));
+    public function getHis($id) {
+        $user = Auth::user()->find($id);
+        $histories = History::all()->where('user_id', $id);
+        return view('site.list-history', compact('histories', 'user'));
+    }
+
+    public function History($id) {
+        $histories = History::find($id);
+        return view('site.detail-history', compact('histories'));
     }
 
     public function contact() {
@@ -104,8 +112,20 @@ class SettingController extends Controller
 
     public function detail($id) {
         $detail = Post::find($id);
-        $comment = Comment::where('post_id', $id)->get();
+        $comment = Comment::where('post_id', $id)->paginate(10);
         return view('site.blog-detail', compact('detail', 'comment'));
+    }
+
+    public function detailDoctor($id) {
+        $doctor1 = Doctor::find($id);
+        return view('site.detail-doctor', compact('doctor1'));
+    }
+
+    public function detailService($id) {
+        $service1 = Service::find($id);
+        $cates3 = Category::all();
+        $post3 = Post::all()->take(5);
+        return view('site.detail-service', compact('service1', 'post3', 'cates3'));
     }
 
     public function postBooking(Request $request){
@@ -123,7 +143,8 @@ class SettingController extends Controller
     }
 
     public function searchFile(Request $request){
-        return view('site.search-file');
+        $files = File::all();
+        return view('site.search-file', compact('files'));
     }
 
     public function postFile(Request $request){
