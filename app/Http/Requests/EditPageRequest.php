@@ -25,7 +25,7 @@ class EditPageRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'path' => 'required',
+            'slug' => 'required',
             'date' => 'required',
             'content' => 'required',
         ];
@@ -34,7 +34,7 @@ class EditPageRequest extends FormRequest
     public function messages(){
        return [
         'name.required' => "Hãy nhập tên trang",
-        'path.required' => "Hãy nhập đường dẫn cho trang",
+        'slug.required' => "Hãy nhập đường dẫn cho trang",
         'date.required' => "Hãy nhập ngày tạo",
         'content.required' => "Hãy nhập nội dung của trang",
     ];

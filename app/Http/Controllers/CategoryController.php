@@ -24,7 +24,7 @@ class CategoryController extends Controller
 			if($model){
 				$model->delete();
 
-                // DB::table('products')->where('cate_id', '=', $model->id)->delete();
+                DB::table('posts')->where('cate_id', '=', $model->id)->delete();
 
     			DB::commit();
 		    }

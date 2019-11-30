@@ -27,9 +27,9 @@
 					<div class="card-body">
 						<div class="form-group">
 							<label>Tên dịch vụ</label>
-							<input type="text" class="form-control" value="{{old('title', $model->title)}}" name="title" placeholder="Nhập tiêu đề..">
-							@if($errors->first('title'))
-							<span class="text-danger">{{$errors->first('title')}}</span>
+							<input type="text" class="form-control" value="{{old('name', $model->name)}}" name="name" placeholder="Nhập tên dịch vụ..">
+							@if($errors->first('name'))
+							<span class="text-danger">{{$errors->first('name')}}</span>
 							@endif
 						</div>
 						<div class="form-group">
@@ -42,7 +42,7 @@
 						</div>
 						<div class="form-group">
 							<label>Giá</label>
-							<textarea class="form-control" name="price" value="{{old('price', $model->price)}}" rows="3" placeholder="Nhập giá dịch vụ..">{!! old('price', $model->price)!!}</textarea> @if($errors->first('price'))
+							<input type="number" class="form-control" value="{{old('price', $model->price)}}" name="price" placeholder="Nhập tiêu đề.."> @if($errors->first('price'))
 							<span class="text-danger">{{$errors->first('price')}}</span>
 							@endif
 						</div>

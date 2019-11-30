@@ -25,7 +25,7 @@ class EditMenuRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'path' => 'required',
+            'slug' => 'required',
             'order' => 'required',
         ];
     }
@@ -33,7 +33,7 @@ class EditMenuRequest extends FormRequest
     public function messages(){
        return [
         'name.required' => "Hãy nhập tên menu",
-        'path.required' => "Hãy nhập đường dẫn cho menu",
+        'slug.required' => "Hãy nhập đường dẫn cho menu",
         'order.required' => "Hãy nhập vị trí cho menu",
     ];
 }

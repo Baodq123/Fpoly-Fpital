@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddDoctorRequest extends FormRequest
+class AddFileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

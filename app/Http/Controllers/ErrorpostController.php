@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Errorpost;
 use App\Category;
+use App\Post;
 use Illuminate\Support\Facades\DB;
 
 class ErrorpostController extends Controller
@@ -28,6 +29,8 @@ class ErrorpostController extends Controller
   //   }
   //   
   public function errorpost(Request $request){
+    $errorpost = Errorpost::all();
+    $post = Post::all();
     $errorpost = Errorpost::all();
     return view('post.errorpost', [
       'dsBaoLoi' => $errorpost

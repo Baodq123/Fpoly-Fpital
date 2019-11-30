@@ -40,7 +40,7 @@
                   @foreach($dsBaoLoi as $item)
                   <tr>
                     <td>{{$item->id}}</td>
-                    <td><a href="#">{{$item->title}}</a></td>
+                    <td><a href="#">{{$item->post['title']}}</a></td>
                     <td>{{$item->category['name']}}</td>
                     <td>{{$item->author}}</td>
                     <td>{{$item->publish_date}}</td>

@@ -49,23 +49,23 @@
             </div>
             <div class="form-group">
               <label>SĐT</label>
-              <input type="number" class="form-control" value="{{old('phone', $model->phone)}}" name="phone" placeholder="Nhập số điện thoại bác sĩ..">
+              <input type="number" class="form-control" value="{{old('phone', $model->phone)}}" name="phone" placeholder="Nhập số điện thoại..">
               @if($errors->first('phone'))
               <span class="text-danger">{{$errors->first('phone')}}</span>
               @endif
             </div>
             <div class="form-group">
               <label>Ngày khám</label>
-              <input type="date" class="form-control" value="{{old('date', $model->phone)}}" name="date" placeholder="Nhập ngày khám..">
+              <input type="date" class="form-control" value="{{old('date', $model->date)}}" name="date" placeholder="Nhập ngày khám..">
               @if($errors->first('date'))
               <span class="text-danger">{{$errors->first('date')}}</span>
               @endif
             </div>
             <div class="form-group">
               <label>Ghi chú</label>
-              <input type="text" class="form-control" value="{{old('text', $model->text)}}" name="text" placeholder="Nhập ngày khám..">
-              @if($errors->first('text'))
-              <span class="text-danger">{{$errors->first('text')}}</span>
+              <input type="text" class="form-control" value="{{old('note', $model->note)}}" name="note" placeholder="Nhập ghi chú..">
+              @if($errors->first('note'))
+              <span class="text-danger">{{$errors->first('note')}}</span>
               @endif
             </div>
           </div>

@@ -6,69 +6,69 @@ use App\Doctor;
 use App\Service;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\AddBookingRequest;
-use App\Http\Requests\EditBookingRequest;
 class BookingController extends Controller
 {
-    public $timestamps = false;
+  public $timestamps = false;
 
-    public function booking(Request $request){
-			$booking = Booking::all();	
-		return view('booking.booking', [
-				'dsBooking' => $booking
-		]);
-    }
+  public function booking(Request $request){
+   $booking = Booking::all();	
+   return view('service.booking', [
+    'dsBooking' => $booking
+  ]);
+ }
 
-    public function remove($id){
+ public function remove($id){
 
-    	DB::beginTransaction();
+   DB::beginTransaction();
 
-    	try{
-			$model = Booking::find($id);
-			if($model){
-				$model->delete();
+   try{
+     $model = Booking::find($id);
+     if($model){
+      $model->delete();
 
                 // DB::table('products')->where('cate_id', '=', $model->id)->delete();
 
-    			DB::commit();
-		    }
-			
-    	}catch(Exception $ex){
-    
-    		DB::rollback();
-    	}
-    	
-		return redirect(route('booking'));
+      DB::commit();
     }
+  }catch(Exception $ex){
+    DB::rollback();
+  }
+  return redirect(route('booking'));
+}
 
-    public function addForm(){
-    	return view('booking.add-booking');
-    }
+public function addForm(){
+  $doctors = Doctor::all();
+  $services = Service::all();
+   return view('service.add-booking', compact('doctors','services'));
+}
 
-     public function saveAdd(AddBookingRequest $request){
+public function saveAdd(AddBookingRequest $request){
 
-    	$model = new Booking();
-    	
-        $model->fill($request->all());
+ $model = new Booking();
 
-    	$model->save();
+ $model->fill($request->all());
+
+ $model->save();
 
     	// Chuyển đường dẫn
-    	return redirect()->route('booking');
-    }
+ return redirect()->route('booking');
+}
 
-    public function editForm($id){
-        $model = Booking::find($id);
-        if(!$model){
-            return redirect()->route('booking');
-        }
-        return view('booking.edit-booking', compact('model'));
-    }
+public function editForm($id){
+  $model = Booking::find($id);
+  if(!$model){
+    return redirect()->route('booking');
+  }
+  $doctors = Doctor::all();
+  $services = Service::all();
+  return view('service.edit-booking', compact('model', 'doctors', 'services'));
+}
 
-    public function saveEdit(EditBookingRequest $request){
-        $model = Booking::find($request->id);
-        $model->fill($request->all());
-        $model->save();
-        return redirect(route('booking'));
-    }
+public function saveEdit(AddBookingRequest $request){
+  $model = Booking::find($request->id);
+  $model->fill($request->all());
+  $model->save();
+  return redirect(route('booking'));
+}
 
 }

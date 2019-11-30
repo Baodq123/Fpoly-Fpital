@@ -30,7 +30,6 @@
                   <tr>
                     <th>STT</th>
                     <th>Slide</th>
-                    <th>Đường dẫn</th>
                     <th>Vị trí</th>
                     <th>Sửa</th>
                     <th>Xóa</th>
@@ -44,7 +43,6 @@
                     <td>
                       <img src="{{$item->image}}" width="100">
                     </td>
-                    <td>{{$item->path}}</td>
                     <td>{{$item->order}}</td>
                     <td><a href="{{route('slide.edit', ['id' => $item->id])}}"><i style="color: #000" class="fas fa-edit"></i></a></td>
                     <td><a href="{{route('slide.remove', 

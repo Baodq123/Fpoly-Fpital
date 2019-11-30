@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="AdminLTE/plugins/summernote/summernote-bs4.css">
-  <!-- Google Font: Source Sans Pro -->
+  <!-- Google Font: Source Sans wPro -->
   <link href="AdminLTE/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -37,21 +37,19 @@
           <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
       </ul>
-
       <!-- SEARCH FORM -->
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              @if(Auth::check())
-              <img style="width: 30px; height: 30px; border-radius: 50px;" src="{{Auth::user()->image}}" class="user-image" alt="">
-              <span class="hidden-xs">{{Auth::user()->name}}</span>
-              @endif
-            </a>
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            @if(Auth::check())
+            <img src="{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image" width="30px;">
+            @endif
+          </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <a href="#" class="dropdown-item dropdown-footer">Thông tin cá nhân</a>
+            <a href="{{route('profile')}}" class="dropdown-item dropdown-footer">Thông tin cá nhân</a>
             <a href="{{route('logout')}}" class="dropdown-item dropdown-footer">Đăng xuất</a>
           </div>
         </li>
@@ -62,7 +60,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="#" class="brand-link">
+      <a href="{{route('home')}}" class="brand-link">
         <img src="AdminLTE/dist/img/fpital-logo-white.png"
         alt="AdminLTE Logo"
         class="brand-image img-circle elevation-3"
@@ -75,20 +73,22 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-             @if(Auth::check())
-            <img style="width: 30px; height: 30px; border-radius: 50px;" src="{{Auth::user()->image}}" class="user-image" alt="">
+           @if(Auth::check())
+           <img src="{{Auth::user()->image}}" class="img-circle elevation-2" alt="User Image">
+         </div>
+         <div class="info">
+          <a href="{{route('profile')}}" class="d-block">
+            {{Auth::user()->name}}
             @endif
-          </div>
-          <div class="info">
-             @if(Auth::check())
-              <span style="color: white;" class="d-block">{{Auth::user()->name}}</span>
-              @endif
-          </div>
+          </a>
         </div>
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      </div>
+      
+      @if(Auth::check())
+      @if( Auth::user()->role_id == 2)
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
            <li class="nav-item has-treeview">
@@ -143,11 +143,6 @@
                   <p>Thêm bác sỹ</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{route('ratedoctor')}}" class="nav-link">
-                  <p>Đánh giá bác sỹ</p>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
@@ -171,7 +166,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('rateservice')}}" class="nav-link">
+                <a href="{{route('feedback')}}" class="nav-link">
                   <p>Đánh giá dịch vụ</p>
                 </a>
               </li>
@@ -250,7 +245,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('account')}}" class="nav-link">
+            <a href="{{route('user')}}" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Tài khoản
@@ -270,6 +265,52 @@
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
+
+
+      @elseif( Auth::user()->role_id == 1)
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+           <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Bài viết
+                <i class="fas fa-angle-left right"></i>
+                <!--                 <span class="badge badge-info right">4</span> -->
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('post')}}" class="nav-link">
+                  <p>Tất cả bài viết</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('post.add')}}" class="nav-link">
+                  <p>Thêm bài viết</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('errorpost')}}" class="nav-link">
+                  <p>Báo lỗi bài viết</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('category')}}" class="nav-link">
+                  <p>Danh mục</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+      @endif
+      @endif
+      
     </div>
     <!-- /.sidebar -->
   </aside>
@@ -297,13 +338,14 @@
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
+          <h6 class="mb-2">Tất cả thời gian</h6>
           <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
+            <div class="col-md-3 col-sm-6 col-12">
               <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="nav-icon fas fa-copy"></i></span>
+                <span class="info-box-icon bg-info"><i class="nav-icon fas fa-copy"></i></span>
 
                 <div class="info-box-content">
-                  <a href="{{route('post')}}"><span class="info-box-text">Tổng số bài viết</span></a>
+                  <span class="info-box-text">Bài viết</span>
                   <span class="info-box-number">
                     <?php 
                     $countpost = DB::table('posts')->count();
@@ -317,12 +359,12 @@
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-file"></i></span>
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-success"><i class="far fa-file"></i></span>
 
                 <div class="info-box-content">
-                  <a href="{{route('file')}}"><span class="info-box-text">Tổng số hồ sơ</span></a>
+                  <span class="info-box-text">Hồ sơ</span>
                   <span class="info-box-number">
                     <?php 
                     $countfile = DB::table('files')->count();
@@ -336,16 +378,12 @@
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
-
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
-
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-warning"><i class="far fa-comment"></i></span>
 
                 <div class="info-box-content">
-                  <a href="{{route('comment')}}"><span class="info-box-text">Tổng số bình luận</span></a>
+                  <span class="info-box-text">Bình luận</span>
                   <span class="info-box-number">
                     <?php 
                     $countcmt = DB::table('comments')->count();
@@ -359,12 +397,12 @@
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-danger"><i class="fas fa-users"></i></span>
 
                 <div class="info-box-content">
-                  <a href="{{route('contact')}}"><span class="info-box-text">Tổng số liên hệ</span></a>
+                  <span class="info-box-text">Liên hệ</span>
                   <span class="info-box-number">
                     <?php 
                     $countcontact = DB::table('contacts')->count();
@@ -378,12 +416,32 @@
               <!-- /.info-box -->
             </div>
             <!-- /.col -->
-<!--             <?php 
-            $one_week_ago = Carbon\Carbon::now()->subDays(6)->format('Y-m-d');
-            $countpost1 = DB::table('posts')->where('publish_date', '>=', $one_week_ago)->count();
-            echo $countpost1;
-            ?>
-            bài viết -->
+          </div>
+          <!-- /.row -->
+
+          <h6 class="mb-2">7 ngày gần đây</h6>
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="nav-icon fas fa-copy"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Bài viết</span>
+                  <span class="info-box-number">
+                    <?php 
+                    $one_week_ago = Carbon\Carbon::now()->subDays(6)->format('Y-m-d');
+                    $countpost1 = DB::table('posts')->where('publish_date', '>=', $one_week_ago)->count();
+                    echo $countpost1;
+                    ?>
+                    bài viết
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            
           </div>
           <!-- /.row -->
         </div><!-- /.container-fluid -->

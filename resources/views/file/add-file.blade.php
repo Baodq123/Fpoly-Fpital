@@ -22,7 +22,7 @@
               </div> -->
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{route('file.add')}}" method="post">
+              <form role="form" action="{{route('file.add')}}" method="post" enctype="multipart/form-data" novalidate>
                 @csrf
                 <div class="card-body">
                   <div class="form-group">

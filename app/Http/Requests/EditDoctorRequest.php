@@ -29,7 +29,6 @@ class EditDoctorRequest extends FormRequest
             'phone' => 'required',
             'major' => 'required',
             'info' => 'required',
-            'image' => 'required',
         ];
     }
 
@@ -40,7 +39,6 @@ class EditDoctorRequest extends FormRequest
         'phone.required' => "Hãy nhập số điện thoại",
         'major.required' => "Hãy nhập chuyên khoa",
         'info.required' => "Hãy nhập nội dung",
-        'image.required' => "Hãy thêm ảnh cho bác sĩ",
     ];
 }
 }

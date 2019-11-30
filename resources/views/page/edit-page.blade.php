@@ -34,9 +34,9 @@
 						</div>
 						<div class="form-group">
 							<label>Đường dẫn</label>
-							<input type="text" class="form-control" value="{{old('path', $model->path)}}" name="path" placeholder="Nhập đường dẫn..">
-							@if($errors->first('path'))
-							<span class="text-danger">{{$errors->first('path')}}</span>
+							<input type="text" class="form-control" value="{{old('slug', $model->slug)}}" name="slug" placeholder="Nhập đường dẫn..">
+							@if($errors->first('slug'))
+							<span class="text-danger">{{$errors->first('slug')}}</span>
 							@endif
 						</div>
 						<div class="form-group">

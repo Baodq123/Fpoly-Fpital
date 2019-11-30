@@ -53,7 +53,7 @@ public function saveAdd(AddFileRequest $request){
             // Thêm đoạn chuỗi không bị trùng đằng trước tên ảnh
     $filename = uniqid() . '-' . $filename;
             // Lưu ảnh và trả về đường dẫn
-    $path = $request->file('image')->storeAs('', $filename);
+    $path = $request->file('image')->storeAs('posts', $filename);
 
         // storeAs('tên thư mục', 'tên ảnh')
 
@@ -74,7 +74,7 @@ public function editForm($id){
     return view('file.edit-file', compact('model'));
 }
 
-public function saveEdit(EditFileRequest $request){
+public function saveEdit(AddFileRequest $request){
     $model = File::find($request->id);
 
     if ($request->hasFile('image')) {

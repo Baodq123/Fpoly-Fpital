@@ -6,6 +6,6 @@ class Menu extends Model
     protected $table = "menus";
 
     protected $fillable = [
-    	'name', 'path','order'
+    	'name', 'slug','order'
     ];
 }

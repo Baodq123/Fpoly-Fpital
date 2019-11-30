@@ -6,6 +6,6 @@ class Page extends Model
     protected $table = "pages";
 
     protected $fillable = [
-    	'name', 'path', 'date', 'content'
+    	'name', 'slug', 'date', 'content'
     ];
 }

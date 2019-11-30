@@ -42,7 +42,7 @@
                     <td>{{$item->id}}</td>
                     <td>{{$item->name}}</td>
                     <td>
-                      <img src="{{$item->image}}" alt="" width="100px;">
+                      <img src="{{$item->image}}" alt="" width="50px;">
                     </td>
                     <td>{{$item->price}}</td>
                     <td><a href="{{route('service.edit', ['id' => $item->id])}}"><i style="color: #000" class="fas fa-edit"></i></a></td>

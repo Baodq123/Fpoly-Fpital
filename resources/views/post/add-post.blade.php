@@ -9,7 +9,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
           <li class="breadcrumb-item active">Thêm bài viết</li>
         </ol>
       </div>
@@ -34,9 +34,9 @@
             </div>
             <div class="form-group">
               <label>Ảnh</label>
-              <input type="file" name="image" class="form-control" value="" placeholder="">
-              @if($errors->first('image'))
-              <span class="text-danger">{{$errors->first('image')}}</span>
+              <input type="file" style="margin-bottom: 20px!important;" name="feature_images" class="form-control" value="" placeholder="">
+              @if($errors->first('feature_images'))
+              <span class="text-danger">{{$errors->first('feature_images')}}</span>
               @endif
             </div>
             <div class="form-group">
@@ -47,8 +47,15 @@
               @endif
             </div>
             <div class="form-group">
+              <label>Đường dẫn</label>
+              <input type="text" class="form-control" value="{{old('slug')}}" name="slug" placeholder="Nhập đường dẫn..">
+              @if($errors->first('slug'))
+              <span class="text-danger">{{$errors->first('slug')}}</span>
+              @endif
+            </div>
+            <div class="form-group">
               <label>Nội dung</label>
-              <textarea class="textarea" name="content" placeholder="Nhập nội dung bài viết.."
+              <textarea id="textarea" class="ckeditor" name="content" placeholder="Nhập nội dung bài viết.."
               style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{old('content'),('')}}</textarea>
               @if($errors->first('content'))
               <span class="text-danger">{{$errors->first('content')}}</span>
@@ -66,9 +73,10 @@
             </div>
             <div class="form-group">
               <label>Tác giả</label>
-              <select class="custom-select" name="author" value="{{old('author')}}">
-                <option value="Thế Kỷ">Thế Kỷ</option>
-                <option value="Quốc Bảo">Quốc Bảo</option>
+              <select name="author" class="form-control" value="{{old('author')}}">
+                @foreach($users as $item)
+                <option value="{{$item->name}}">{{$item->name}}</option>
+                @endforeach
               </select>
             </div>
             <div class="form-group">
@@ -78,31 +86,27 @@
                 <option value="{{$item->id}}">{{$item->name}}</option>
                 @endforeach
               </select>
-
             </div>
-            <div class="form-check">
-              <input type="checkbox" name="status" value="1" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Xuất bản</label>
-            </div> 
-          </div>
-          <!-- /.card-body -->
+            <div class="form-group">
+              <input type="radio" name="status" value="1"> Hiện
+                  <input style="margin-left: 20px;" type="radio" name="status" value="0"> Ẩn
+            </div>
+            <!-- /.card-body -->
 
-          <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Đăng bài viết</button>
-          </div>
-        </form>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Đăng bài viết</button>
+            </div>
+          </form>
+        </div>
       </div>
+      <!-- /.col-->
     </div>
-    <!-- /.col-->
-  </div>
-  <!-- ./row -->
-</section>
-<!-- /.content -->
-<script src="AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
-<script>
-  $(function () {
-    // Summernote
-    $('.textarea').summernote()
-  })
-</script>
-@endsection
+    <!-- ./row -->
+  </section>
+  <!-- /.content -->
+  <script type="text/javascript">  
+   CKEDITOR.replace( '#textarea' );  
+ </script> 
+ <script src="/ckeditor/ckeditor.js"></script>
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>  
+ @endsection

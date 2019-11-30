@@ -26,7 +26,8 @@ class EditPostRequest extends FormRequest
         return [
             'title' => 'required|max:200|unique:posts,title,' . $this->id,
             'content' => 'required',
-            'image' => 'mimes:jpg,jpeg,png',
+            'feature_images' => 'mimes:jpg,jpeg,png',
+            'slug' => 'required',
             'publish_date' => 'required|date',
             'author' => 'required',
         ];
@@ -38,7 +39,8 @@ class EditPostRequest extends FormRequest
         'title.max' => "Tiêu đề tối đa 200 kí tự",
         'title.unique' => "Tiêu đề đã tồn tại",
         'content.required' => "Hãy nhập nội dung bài viết",
-        'image.mimes:jpg,jpeg,png' => "Vui lòng nhập file ảnh có định dạng: jpg, jpeg, png",
+        'feature_images.mimes:jpg,jpeg,png' => "Vui lòng nhập file ảnh có định dạng: jpg, jpeg, png",
+        'slug.required' => "Hãy nhập đường dẫn cho bài viết",
         'publish_date.required' => "Hãy nhập ngày đăng bài viết",
         'author.required' => "Hãy nhập tên tác giả"
     ];

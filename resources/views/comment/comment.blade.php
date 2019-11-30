@@ -39,16 +39,16 @@
                 @foreach($dsComment as $item)
                 <tr>
                   <td>{{$item->id}}</td>
-                  <td>{{$item->name}}</td>
-                  <td>{{$item->email}}</td>
-                  <td>{{$item->content}}</td>
-                  <td><a href="#">{{$item->title}}</a></td>
+                  <td>{{$item->user->name}}</td>
+                  <td>{{$item->user->email}}</td>
+                  <td>{{$item->message}}</td>
+                  <td><a href="#">{{$item->post->title}}</a></td>
                   <td>
                       <?php if ($item->status == 0): ?>
-                        <input type="checkbox">
+                        <input type="submit" class="btn btn-danger" style="width: 60px; cursor: auto;" value="Ẩn">
                       <?php endif ?>
                       <?php if ($item->status == 1): ?>
-                        <input type="checkbox" checked>
+                        <input type="submit" class="btn btn-primary" style="width: 60px; cursor: auto;" value="Hiện">
                       <?php endif ?>
                     </td>
                   <td><a href="{{route('comment.edit', ['id' => $item->id])}}"><i style="color: #000" class="fas fa-edit"></i></a></td>

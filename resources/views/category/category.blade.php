@@ -43,7 +43,7 @@
                   <td>{{$item->path}}</td>
                   <td><a href="{{route('category.edit', ['id' => $item->id])}}"><i style="color: #000" class="fas fa-edit"></i></a></td>
                    <td><a href="{{route('category.remove', 
-                    ['id' => $item->id])}}" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục số {{$item->id}}?')"><i style="color: #000" class="fas fa-trash"></i></a></td>
+                    ['id' => $item->id])}}" onclick="return confirm('Xóa danh mục sẽ xóa những bài viết thuộc danh mục ấy, bạn có muốn xóa danh mục {{$item->name}}?, ')"><i style="color: #000" class="fas fa-trash"></i></a></td>
                 </tr>
                 @endforeach
                 </tbody>

@@ -41,7 +41,7 @@
                 <tr>
                   <td>{{$item->id}}</td>
                   <td>{{$item->name}}</td>
-                  <td>{{$item->path}}</td>
+                  <td>{{$item->slug}}</td>
                   <td>{{$item->order}}</td>
                   <td><a href="{{route('menu.edit', ['id' => $item->id])}}"><i style="color: #000" class="fas fa-edit"></i></a></td>
                    <td><a href="{{route('menu.remove', 

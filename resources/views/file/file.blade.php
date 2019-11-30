@@ -8,9 +8,9 @@
         <h1>Danh sách hồ sơ</h1>
       </div>
       <div class="col-sm-4"></div>
-<!--       <div class="col-sm-2">
-        <a href="{{route('post.add')}}"><input type="submit" class="form-control btn btn-primary" value="Thêm bài viết"></a>
-      </div> -->
+      <div class="col-sm-2">
+        <a href="{{route('file.add')}}"><input type="submit" class="form-control btn btn-primary" value="Thêm hồ sơ"></a>
+      </div>
     </div>
   </div><!-- /.container-fluid -->
 </section>
@@ -30,7 +30,7 @@
                   <tr>
                     <th>STT</th>
                     <th>Tên bệnh nhân</th>
-                    <th>Ảnh</th>
+<!--                     <th>Ảnh</th> -->
                     <th>Địa chỉ</th>
                     <th>SĐT</th>
                     <th>Ngày khám</th>
@@ -44,11 +44,12 @@
                   <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->name}}</td>
-                    <td>
-                      <img src="{{$item->name}}" alt="" width="100px;">
-                    </td>
+<!--                     <td>
+                      <img src="{{$item->image}}" alt="" width="100px;">
+                    </td> -->
                     <td>{{$item->address}}</td>
                     <td>{{$item->phone}}</td>
+                    <td>{{$item->date}}</td>
                     <td>{{$item->note}}</td>
                     <td><a href="{{route('file.edit', ['id' => $item->id])}}"><i style="color: #000" class="fas fa-edit"></i></a></td>
                     <td><a href="{{route('file.remove', 

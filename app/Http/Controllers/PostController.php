@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Category;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\AddPostRequest;
 use App\Http\Requests\EditPostRequest;
@@ -34,16 +35,22 @@ class PostController extends Controller
     }
 
     public function post(Request $request){
-        
-        return redirect(route('post'));
-    }
+        $posts = Post::all();
 
+        return view('post.post', [
+            'dsBaiViet' => $posts
+        ]); 
+    }
+    
     public function remove($id){
     	DB::beginTransaction();
     	try{
            $model = Post::find($id);
            if($model){
             $model->delete();
+
+            DB::table('comments')->where('post_id', '=', $model->id)->delete();
+
             DB::commit();
         }
     } catch(Exception $ex){
@@ -56,34 +63,35 @@ class PostController extends Controller
 
 public function addForm(){
  $cates = Category::all();
- return view('post.add-post', compact('cates'));
+ $users = User::all()->where('role_id', '>', '0');
+ return view('post.add-post', compact('cates','users'));
 }
 
 public function saveAdd(AddPostRequest $request){
 
-        // Tạo 1 thực thể mới
     $model = new Post();
+    
+    $model->fill($request->all());
 
-        // Fill -> Khớp với dữ liệu viết ở fillable
-        if ($request->hasFile('image')) {
+    if ($request->hasFile('feature_images')) {
 
             // Lấy tên gốc của ảnh
-        $filename = $request->image->getClientOriginalName();
+        $filename = $request->feature_images->getClientOriginalName();
             // Thay thế kí tự khoảng trắng bằng ký tự '-'
         $filename = str_replace(' ', '-', $filename);
             // Thêm đoạn chuỗi không bị trùng đằng trước tên ảnh
         $filename = uniqid() . '-' . $filename;
             // Lưu ảnh và trả về đường dẫn
-        $path = $request->file('image')->storeAs('posts', $filename);
+        $path = $request->file('feature_images')->storeAs('posts', $filename);
 
         // storeAs('tên thư mục', 'tên ảnh')
 
-        $model->image = "images/$path";
+        $model->feature_images = "images/$path";
     }
 
         // Lưu xuống
-        $model->fill($request->all());   
     $model->save();
+
         // Chuyển đường dẫn
     return redirect()->route('post');
 }
@@ -94,35 +102,29 @@ public function editForm($id){
         return redirect()->route('homepage');
     }
     $cates = Category::all();
-    return view('post.edit-post', compact('model', 'cates'));
+    $users = User::all()->where('role_id', '>', '0');
+    return view('post.edit-post', compact('model', 'cates', 'users'));
 }
 
 public function saveEdit(EditPostRequest $request){
+    
     $model = Post::find($request->id);
-
-    if ($request->hasFile('image')) {
+    
+    if ($request->hasFile('feature_images')) {
 
             // Lấy tên gốc của ảnh
-        $filename = $request->image->getClientOriginalName();
+        $filename = $request->feature_images->getClientOriginalName();
             // Thay thế kí tự khoảng trắng bằng ký tự '-'
         $filename = str_replace(' ', '-', $filename);
             // Thêm đoạn chuỗi không bị trùng đằng trước tên ảnh
         $filename = uniqid() . '-' . $filename;
             // Lưu ảnh và trả về đường dẫn
-        $path = $request->file('image')->storeAs('posts', $filename);
+        $path = $request->file('feature_images')->storeAs('posts', $filename);
 
         // storeAs('tên thư mục', 'tên ảnh')
 
-        $model->image = "images/$path";
+        $model->feature_images = "images/$path";
     }
-    // $img = $_FILES['image'];
-    // $_POST['image'] = $model->image;
-    //     // lưu ảnh
-    // if($img['size'] > 0){
-    //     $filename = "public/images/posts/" . uniqid() . "-" . $img['name'];
-    //     move_uploaded_file($img['tmp_name'], $filename);
-    //     $_POST['image'] = $filename;
-    // }
 
     $model->fill($request->all());
     $model->save();

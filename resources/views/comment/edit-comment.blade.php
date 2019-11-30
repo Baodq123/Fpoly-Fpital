@@ -43,11 +43,15 @@
               <input type="text" class="form-control" value="{{old('title', $model->title)}}" name="title" readonly="">
             </div>
             <div class="form-group">
-              <label>Kiểm duyệt</label>
-              <select class="custom-select" name="status" value="{{old('status')}}">
-                <option value="0">Ẩn</option>
-                <option value="1">Hiện</option>
-              </select>
+              <label>Kiểm duyệt</label><br>
+              <?php if ($model->status == '0'): ?>
+                  <input type="radio" name="status" value="1"> Hiện
+                  <input style="margin-left: 20px;" type="radio" name="status" value="0" checked> Ẩn
+                <?php endif ?>
+                <?php if ($model->status == '1'): ?>
+                  <input type="radio" name="status" value="1" checked> Hiện
+                  <input style="margin-left: 20px;" type="radio" name="status" value="0"> Ẩn
+                <?php endif ?>
             </div>
           </div>
           <!-- /.card-body -->

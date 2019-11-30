@@ -52,10 +52,10 @@
                     <td>{{$item->content}}</td>
                     <td>
                       <?php if ($item->status == 0): ?>
-                        <input type="checkbox">
+                        Ẩn
                       <?php endif ?>
                       <?php if ($item->status == 1): ?>
-                        <input type="checkbox" checked>
+                        Hiện
                       <?php endif ?>
                     </td>
                     <td><a href="{{route('ratedoctor.edit', ['id' => $item->id])}}"><i style="color: #000" class="fas fa-edit"></i></a></td>

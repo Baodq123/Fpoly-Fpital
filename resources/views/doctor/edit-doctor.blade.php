@@ -9,7 +9,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
           <li class="breadcrumb-item active">Sửa bác sĩ</li>
         </ol>
       </div>
@@ -22,7 +22,7 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card card-outline card-i  nfo">
-        <form action="{{route('doctor.edit', ['id' => $model->id])}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('doctor.edit', ['id' => $model->id])}}" enctype="multipart/form-data" novalidate>
           @csrf
           <div class="card-body">
             <div class="form-group">
@@ -44,7 +44,7 @@
               <label>Email</label>
               <input type="text" class="form-control" value="{{old('email', $model->email)}}" name="email" placeholder="Nhập email bác sĩ..">
               @if($errors->first('email'))
-              <span class="text-danger">{{$errors->first('name')}}</span>
+              <span class="text-danger">{{$errors->first('email')}}</span>
               @endif
             </div>
             <div class="form-group">

@@ -41,28 +41,37 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php 
+                  $a = 0;
+                  ?>
                   @foreach($dsBaiViet as $item)
                   <tr>
-                    <td>{{$item->id}}</td>
-                    <td>{{$item->title}}</td>
                     <td>
-                      <img src="{{$item->image}}" width="100">
+                      <?php 
+                      $a++;
+                      echo $a;
+                      ?>
+                    </td>
+                    <td><a href="#">{{$item->title}}</a></td>
+                    <td>
+                      <img src="{{$item->feature_images}}" width="50">
                     </td>
                     <td>{{$item->category->name}}</td>
-                    <td>{{$item->publish_date}}</td>
+                    <td>{{Carbon\Carbon::parse($item->publish_date)->format('d/m/Y')}}
+                    </td>
                     <td>{{$item->author}}</td>
                     <td>{{$item->views}}</td>
                     <td>
                       <?php if ($item->status == 0): ?>
-                        Ẩn 
+                        <input type="submit" class="btn btn-danger" style="width: 60px; cursor: auto;" value="Ẩn">
                       <?php endif ?>
                       <?php if ($item->status == 1): ?>
-                       Hiển thị
+                       <input type="submit" class="btn btn-primary" style="width: 60px; cursor: auto;" value="Hiện">
                      <?php endif ?>
                    </td>
                    <td><a href="{{route('post.edit', ['id' => $item->id])}}"><i style="color: #000" class="fas fa-edit"></i></a></td>
                    <td><a href="{{route('post.remove', 
-                    ['id' => $item->id])}}" onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết số {{$item->id}}?')"><i style="color: #000" class="fas fa-trash"></i></a></td>
+                    ['id' => $item->id])}}" onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết {{$item->title}}?')"><i style="color: #000" class="fas fa-trash"></i></a></td>
                   </tr>
                   @endforeach
                 </tbody>

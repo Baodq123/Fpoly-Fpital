@@ -27,9 +27,7 @@ class AddBookingRequest extends FormRequest
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'publish_date' => 'required',
-            'major' => 'required',
-            'doctor' => 'required',
+            'date' => 'required',
         ];
     }
 
@@ -38,9 +36,7 @@ class AddBookingRequest extends FormRequest
         'name.required' => "Hãy nhập họ và tên",
         'email.required' => "Hãy nhập email",
         'phone.required' => "Hãy nhập số điện thoại",
-        'publish_date.required' => "Hãy nhập ngày đặt lịch",
-        'major.required' => "Hãy chọn khoa khám",
-        'doctor.required' => "Hãy chọn bác sĩ",
+        'date.required' => "Hãy nhập ngày đặt lịch",
     ];
 }
 }

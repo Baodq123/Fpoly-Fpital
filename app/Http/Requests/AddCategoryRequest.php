@@ -24,7 +24,7 @@ class AddCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:categories',
             'path' => 'required',
         ];
     }
@@ -32,6 +32,7 @@ class AddCategoryRequest extends FormRequest
     public function messages(){
        return [
         'name.required' => "Hãy nhập tên danh mục",
+        'name.unique' => "Danh mục này đã tồn tại",
         'path.required' => "Hãy nhập đường dẫn cho danh mục",
     ];
 }

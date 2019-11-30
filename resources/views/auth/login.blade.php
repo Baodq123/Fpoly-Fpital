@@ -19,73 +19,69 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="AdminLTE/index2.html"><img src="AdminLTE/dist/img/fpital-logo-white.png" width="100px;" alt=""></a>
+  @if ( Session::has('success') )
+  <div class="alert alert-success alert-dismissible" role="alert">
+    <strong>{{ Session::get('success') }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+    </button>
   </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-
-      <form action="{{route('login')}}" method="post">
-        @csrf
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="email" value="{{old('email')}}" placeholder="Nhập email..">
-          @if($errors->first('email'))
-          <span class="text-danger">{{$errors->first('email')}}</span>
-          @endif
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" value="{{old('password')}}" name="password" placeholder="Nhập mật khẩu..">
-          @if($errors->first('password'))
-          <span class="text-danger">{{$errors->first('password')}}</span>
-          @endif
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Lưu đăng nhập
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-6">
-            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-      <p class="mb-1">
-        <a href="forgot-password.html">Quên mật khẩu</a>
-      </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">Đăng ký tài khoản</a>
-      </p>
+@endif
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="AdminLTE/index2.html"><img src="AdminLTE/dist/img/fpital-logo-white.png" width="100px;" alt=""></a>
     </div>
-    <!-- /.login-card-body -->
-  </div>
-</div>
-<!-- /.login-box -->
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
 
-<!-- jQuery -->
-<script src="AdminLTE/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="AdminLTE/dist/js/adminlte.min.js"></script>
+        <form action="{{route('login')}}" method="post">
+          @csrf
+          <div class="form-group">
+            <input type="text" class="form-control" name="email" value="{{old('email')}}" placeholder="Nhập email..">
+            @if($errors->first('email'))
+            <span class="text-danger">{{$errors->first('email')}}</span>
+            @endif
+          </div>
+          <div class="form-group mb-3">
+            <input type="password" class="form-control" value="{{old('password')}}" name="password" placeholder="Nhập mật khẩu..">
+            @if($errors->first('password'))
+            <span class="text-danger">{{$errors->first('password')}}</span>
+            @endif
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="icheck-primary">
+                <input type="checkbox" id="remember">
+                <label for="remember">
+                  Lưu đăng nhập
+                </label>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-6">
+              <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+
+        <p class="mb-1">
+          <a href="forgot-password.html">Quên mật khẩu?</a>
+        </p>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+
+  <!-- jQuery -->
+  <script src="AdminLTE/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="AdminLTE/dist/js/adminlte.min.js"></script>
 
 </body>
 </html>

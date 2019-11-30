@@ -28,13 +28,13 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>STT</th>
+                    <th>STT</th>  
                     <th>Tên bác sĩ</th>
                     <th>Ảnh đại diện</th>
                     <th>Email</th>
                     <th>SĐT</th>
                     <th>Chuyên khoa</th>
-                    <th>Email</th>
+                    <th>Ghi chú</th>
                     <th>Sửa</th>
                     <th>Xóa</th>
                   </tr>
@@ -45,7 +45,7 @@
                     <td>{{$item->id}}</td>
                     <td>{{$item->name}}</td>
                     <td>
-                      <img src="{{$item->image}}" width="100">
+                      <img src="{{$item->image}}" width="50px;">
                     </td>
                     <td>{{$item->email}}</td>
                     <td>{{$item->phone}}</td>
@@ -53,7 +53,7 @@
                     <td>{{$item->info}}</td>
                     <td><a href="{{route('doctor.edit', ['id' => $item->id])}}"><i style="color: #000" class="fas fa-edit"></i></a></td>
                     <td><a href="{{route('doctor.remove', 
-                      ['id' => $item->id])}}" onclick="return confirm('Bạn có chắc chắn muốn xóa thông tin bác sĩ số {{$item->id}}?')"><i style="color: #000" class="fas fa-trash"></i></a></td>
+                      ['id' => $item->id])}}" onclick="return confirm('Bạn có chắc chắn muốn xóa thông tin bác sĩ {{$item->name}}?')"><i style="color: #000" class="fas fa-trash"></i></a></td>
                     </tr>
                     @endforeach
                   </tbody>

@@ -14,6 +14,6 @@ class Comment extends Model
     }
 
     protected $fillable = [
-    	'user_id', 'message', 'post_id', 'status',
+    	'name', 'email', 'content', 'title', 'status',
     ];
 }

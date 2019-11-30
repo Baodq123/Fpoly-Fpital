@@ -27,7 +27,8 @@ class AddPostRequest extends FormRequest
             'title' => 'required|unique:posts|max:200',
             'content' => 'required',
             'description' => 'required',
-            'image' => 'required|file|mimes:jpg,jpeg,png',
+            'slug' => 'required',
+            'feature_images' => 'required|file|mimes:jpg,jpeg,png',
             'publish_date' => 'required|date',
         ];
     }
@@ -39,8 +40,9 @@ class AddPostRequest extends FormRequest
         'title.max' => "Tiêu đề tối đa 65 ký tự",
         'description.required' => "Hãy nhập miêu tả bài viết",
         'content.required' => "Hãy nhập nội dung bài viết",
-        'image.required' => "Hãy thêm ảnh cho bài viết",
-        'image.mimes' => "Vui lòng nhập file ảnh có định dạng: jpg, jpeg, png",
+        'slug.required' => "Hãy nhập đường dẫn cho bài viết",
+        'feature_images.required' => "Hãy thêm ảnh cho bài viết",
+        'feature_images.mimes' => "Vui lòng nhập file ảnh có định dạng: jpg, jpeg, png",
         'publish_date.required' => "Hãy nhập ngày đăng bài viết",
     ];
 }

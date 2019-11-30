@@ -1,30 +1,11 @@
 <?php
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Setting;
-use App\Doctor;
-use App\Service;
-use App\Post;
-use App\History;
-use App\Booking;
-use App\Comment;
-use App\Category;
-use App\File;
-use App\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Builder;
-
 
 class SettingController extends Controller
 {
-    function __construct(){
-        if(Auth::check()){
-            view()->share('user', Auth::user());
-        }
-    }
-
     public $timestamps = false;
 
     public function setting(Request $request){
@@ -33,146 +14,6 @@ class SettingController extends Controller
             'dsSetting' => $setting
         ]); 
     }
-    
-    public function index() {
-        $service = Service::all()->take(4);
-        $doctor = Doctor::all();
-        $posts = Post::all()->take(3);
-        $comment = Comment::all()->take(4);
-        $settings = Setting::all();
-
-        return view('site.index', compact('service', 'doctor', 'posts', 'comment', 'settings'));
-    }
-
-    public function service() {
-        $service = Service::all()->take(4);
-        $service1 = Service::all();
-
-        return view('site.service', compact('service', 'service1'));
-    }
-
-    public function doctor() {
-        $doctor = Doctor::all();
-
-        return view('site.doctor', compact('doctor'));
-    }
-
-    public function user() {
-        $user = Auth::user();
-        return view('site.user-info', compact('user'));
-    }
-    
-    public function getSua($id) {
-        $user = User::find($id);
-        return view('site.edit-user', compact('user'));
-    }
-
-    public function postSua(Request $request) {
-        $user = User::find($request->id);
-        $user->fill($request->all());
-        $user->save();
-        return redirect(route('tai-khoan'));
-    }
-
-    public function getPass() {
-        $user = Auth::user();
-        return view('site.change-password', compact('user'));
-    }
-
-    public function getHis($id) {
-        $user = Auth::user()->find($id);
-        $histories = History::all()->where('user_id', $id);
-        return view('site.list-history', compact('histories', 'user'));
-    }
-
-    public function History($id) {
-        $histories = History::find($id);
-        return view('site.detail-history', compact('histories'));
-    }
-
-    public function contact() {
-        $contact = Setting::all();
-
-        return view('site.contact', compact('contact'));
-    }
-
-    public function blog(Request $request){
-        $posts = Post::paginate(5);
-        $posts2 = Post::all()->take(5);
-        $cates = Category::all();
-        return view('site.blog', compact('posts', 'cates', 'posts2')); 
-    }
-
-    public function blogcate($id, Request $request){
-        $cates = Category::find($id);
-        $posts = Post::all()->where('cate_id', '=', '$id');
-
-        return view('site.blog-cate', compact('posts', 'cates')); 
-    }
-
-    public function detail($id) {
-        $detail = Post::find($id);
-        $comment = Comment::where('post_id', $id)->paginate(10);
-        return view('site.blog-detail', compact('detail', 'comment'));
-    }
-
-    public function detailDoctor($id) {
-        $doctor1 = Doctor::find($id);
-        return view('site.detail-doctor', compact('doctor1'));
-    }
-
-    public function detailService($id) {
-        $service1 = Service::find($id);
-        $cates3 = Category::all();
-        $post3 = Post::all()->take(5);
-        return view('site.detail-service', compact('service1', 'post3', 'cates3'));
-    }
-
-    public function postBooking(Request $request){
-        $booking = new Booking;	
-        $booking->fill($request->all());
-
-    	$booking->save();
-        return redirect(route('index'));
-    }
-
-    public function search(Request $request){
-        $tukhoa = $request->tukhoa;
-        $posts = Post::where('title', 'like', "%$tukhoa%")->orWhere('description', 'like', "%$tukhoa%")->orWhere('content', 'like', "%$tukhoa%")->take(10)->paginate(5);
-        return view('site.search', compact('tukhoa', 'posts'));
-    }
-
-    public function searchFile(Request $request){
-        $files = File::all();
-        return view('site.search-file', compact('files'));
-    }
-
-    public function postFile(Request $request){
-        $tk = $request->tk;
-        $files = File::where('code_patient', 'like', "%$tk%")->orWhere('name', 'like', "%$tk%")->orWhere('address', 'like', "%$tk%");
-        return view('site.file', compact('tk', 'files'));
-    }
-
-    // public function show(Request $request){
-    //     $service = Service::all();
-    //     return view('site.index', [
-    //         'dsSetting1' => $service
-    //     ]); 
-    // }
-
-    // public function doctor(Request $request){
-    //     $doctor = Doctor::all();
-    //     return view('site.index', [
-    //         'dsSetting2' => $doctor
-    //     ]); 
-    // }
-
-    // public function post(Request $request){
-    //     $post = Post::all();
-    //     return view('site.index', [
-    //         'dsSetting3' => $post
-    //     ]); 
-    // }
 
 public function editForm($id){
     $model = Setting::find($id);

@@ -22,7 +22,7 @@
               </div> -->
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="{{route('service.add')}}" method="post">
+              <form role="form" action="{{route('service.add')}}" method="post" enctype="multipart/form-data" novalidate>
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
@@ -41,7 +41,7 @@
                   </div>
                   <div class="form-group">
                     <label>Giá</label>
-                    <input type="text" class="form-control" name="price" value="{{old('price')}}" placeholder="Nhập giá dịch vụ..">
+                    <input type="number" class="form-control" name="price" value="{{old('price')}}" placeholder="Nhập giá dịch vụ..">
                     @if($errors->first('price'))
                     <span class="text-danger">{{$errors->first('price')}}</span>
                     @endif

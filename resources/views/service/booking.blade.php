@@ -47,9 +47,9 @@
                     <td>{{$item->name}}</td>
                     <td>{{$item->email}}</td>
                     <td>{{$item->phone}}</td>
-                    <td>{{$item->publish_date}}</td>
-                    <td>{{$item->major}}</td>
-                    <td>{{$item->doctor}}</td>
+                    <td>{{$item->date}}</td>
+                    <td>{{$item->service['name']}}</td>
+                    <td>{{$item->doctor['name']}}</td>
                     <td>{{$item->note}}</td>
                     <td><a href="{{route('booking.edit', ['id' => $item->id])}}"><i style="color: #000" class="fas fa-edit"></i></a></td>
                     <td><a href="{{route('booking.remove', 

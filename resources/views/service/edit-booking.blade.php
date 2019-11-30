@@ -48,7 +48,7 @@
 						</div>
 						<div class="form-group">
 							<label>Ngày khám</label>
-							<input type="date" name="publish_date" class="form-control" value="{{old('publish_date', $model->publish_date)}}">
+							<input type="date" name="date" class="form-control" value="{{old('date', $model->date)}}">
 							<small>
 								Thời gian hiện tại: {{Carbon\Carbon::now('Asia/Ho_Chi_Minh')->format('h:i:s A, d-m-Y')}}
 							</small><br>
@@ -58,42 +58,53 @@
 						</div>
 						<div class="form-group">
 							<label>Dịch vụ khám</label>
-							<input type="text" class="form-control" value="{{old('service', $model->service)}}" name="service" placeholder="Nhập tên dịch vụ..">
-							@if($errors->first('service'))
-							<span class="text-danger">{{$errors->first('service')}}</span>
-							@endif
-						</div>
-						<div class="form-group">
-							<label>Bác sĩ khám</label>
-							<input type="text" class="form-control" value="{{old('doctor', $model->doctor)}}" name="doctor" placeholder="Nhập tên bác sĩ..">
-							@if($errors->first('doctor'))
-							<span class="text-danger">{{$errors->first('doctor')}}</span>
-							@endif
-						</div>
-						<div class="form-group">
-							<label>Ghi chú</label>
-							<input type="text" class="form-control" value="{{old('note', $model->note)}}" name="note" placeholder="Nhập ghi chú..">
-							@if($errors->first('note'))
-							<span class="text-danger">{{$errors->first('note')}}</span>
-							@endif
-						</div>
-					</div>
-					<!-- /.card-body -->
+							<select name="service_id" class="form-control">
+								@foreach ($services as $ser)
+								<option value="{{$ser->id}}"
+									@if($ser->id == $model->service_id)
+									selected
+									@endif
+									>{{$ser->name}}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Bác sĩ</label>
+								<select name="doctor_id" class="form-control">
+									@foreach ($doctors as $doc)
+									<option value="{{$doc->id}}"
+										@if($doc->id == $model->doctor_id)
+										selected
+										@endif
+										>{{$doc->name}}</option>
+										@endforeach
+									</select>
+								</div>
+								<div class="form-group">
+									<label>Ghi chú</label>
+									<textarea id="note" class="ckeditor" name="note" placeholder="Nhập nội dung bài viết.."
+									style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{!! old('note', $model->note)!!}</textarea>
+									@if($errors->first('note'))
+									<span class="text-danger">{{$errors->first('note')}}</span>
+									@endif
+								</div>
+							</div>
+							<!-- /.card-body -->
 
-					<div class="card-footer">
-						<button type="submit" class="btn btn-primary">Sửa</button>
+							<div class="card-footer">
+								<button type="submit" class="btn btn-primary">Sửa</button>
+							</div>
+						</form>
 					</div>
-				</form>
+				</div>
+				<!-- /.col-->
 			</div>
-		</div>
-		<!-- /.col-->
-	</div>
-	<!-- ./row -->
-</section>
-<!-- /.content -->
-<script src="AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
-<script>
-	$(function () {
+			<!-- ./row -->
+		</section>
+		<!-- /.content -->
+		<script src="AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
+		<script>
+			$(function () {
     // Summernote
     $('.textarea').summernote()
 })

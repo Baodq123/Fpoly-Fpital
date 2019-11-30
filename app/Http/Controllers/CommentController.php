@@ -2,11 +2,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
-use App\Post;
 use App\User;
-use App\Category;
+use App\Post;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
     public $timestamps = false;
@@ -16,18 +14,6 @@ class CommentController extends Controller
 		return view('comment.comment', [
 				'dsComment' => $comment
 		]);
-    }
-
-    public function postComment($id, Request $request) {
-        $comment = new Comment;
-        $post_id = $id;
-        $comment->post_id = $post_id;
-        $comment->user_id = Auth::user()->id;
-        $comment->message = $request->message;
-        $comment->status = 0;
-        $comment->save();
-
-        return redirect("detail-{$id}");
     }
 
     public function remove($id){
@@ -54,10 +40,12 @@ class CommentController extends Controller
 
     public function editForm($id){
         $model = Comment::find($id);
+        $posts = Post::all();
+        $users = User::all();
         if(!$model){
             return redirect()->route('comment');
         }
-        return view('comment.edit-comment', compact('model'));
+        return view('comment.edit-comment', compact('model', 'posts',' users'));
     }
 
     public function saveEdit(Request $request){

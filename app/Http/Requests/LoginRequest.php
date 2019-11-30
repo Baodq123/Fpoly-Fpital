@@ -34,6 +34,7 @@ class LoginRequest extends FormRequest
         'email.email' => "Nhập đúng định dạng email",
         'email.required' => "Email không được để trống",
         'password.required' => "Mật khẩu không được để trống",
+        
     ];
 }
 }

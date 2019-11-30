@@ -6,6 +6,6 @@ class File extends Model
     protected $table = "files";
 
     protected $fillable = [
-    	'name','code_patient','image','address','phone','date','note',
+    	'name','image','address','phone','date','note'
     ];
 }
