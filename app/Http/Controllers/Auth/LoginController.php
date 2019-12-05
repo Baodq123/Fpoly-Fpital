@@ -93,7 +93,7 @@ class LoginController extends Controller
         // storeAs('tên thư mục', 'tên ảnh')
 
         $model->image = "images/$path";
-    }
+        }
 
         $model->role_id = 0;
         
@@ -105,7 +105,7 @@ class LoginController extends Controller
              return view('site.signup');
         }
 
-    public function getDangnhap(){
+        public function getDangnhap(){
             return view('site.login');
         }
     
