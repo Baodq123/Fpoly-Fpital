@@ -11,20 +11,22 @@
 							style="font-family: utm avo; font-size: 13px; color: #fff"> fpital@gmail.com</span>
 					</div>
 					<div class="col-md-6" style="text-align:right;">
-						<!-- Basic dropdown -->
-						<div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
-                                <button class="dropbtnn" >Xin chào, {{Auth::user()->name}}</button>
-                                <div class="dropdown-contentt">
-                                    <a href="/tai-khoan">Tài khoản</a>
-                                    <a href="">Tìm kiếm hồ sơ</a>
-                                    <a href="change_password.html">Đổi mật khẩu</a>
-                                    <a href="list-history.html">Lịch sử khám</a>
-                                </div>
-						</div>
-						<!-- Basic dropdown -->
-
-						<a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span
-								style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
+						@if (Auth::check())
+                <div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
+                        <button class="dropbtnn" >Xin chào, {{Auth::user()->name}}</button>
+                        <div class="dropdown-contentt">
+                            <a href="/tai-khoan">Tài khoản</a>
+                            <a href="/doi-mat-khau-{{Auth::user()->id}}">Đổi mật khẩu</a>
+                            @if(Auth::check())
+                            <a href="/lich-su-kham-{{Auth::user()->id}}">Lịch sử khám</a>
+                        </div>
+                        @endif
+                    </div>
+                <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
+                @else
+                <a href="/dang-nhap"><i style="color: #fff; font-size: 13px;"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng nhập</span></a>
+                <a href="/dang-ky"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng ký</span></a>
+                @endif
 					</div>
 				</div>
 			</div>
@@ -33,13 +35,51 @@
 	<div class="container">
 		<div class="row first-header text-center margin-auto" style="margin-left: 350px;">
 			<div class="col-md-6 xs-12">
-				<a href="index.html"><img src="images/fpital-logo.png" alt="" width="200px;"></a>
+				<a href="/"><img src="Fpital/images/fpital-logo.png" alt="" width="200px;"></a>
 			</div>
 		</div>
 	</div>
 	<div class="container-fluid">
 		<hr>
 	</div>
+	<div class="container second-header col-md-12 col-xs-12 ">
+		<nav class="animenu text-center" role="navigation" aria-label="Menu">
+				<button class="animenu__btn">
+				  <span class="animenu__btn__bar"></span>
+				  <span class="animenu__btn__bar"></span>
+				  <span class="animenu__btn__bar"></span>
+				</button>
+
+				<ul class="animenu__nav">
+				  <li><a href="/">Trang chủ</a></li>
+				  <li>
+					<a href="about.html" class="animenu__nav__hasDropdown" >Chúng tôi</a>
+					
+				  </li>
+				  <li>
+					<a href="/dich-vu" class="animenu__nav__hasDropdown" >Dịch vụ</a>
+					
+				  </li>
+				  <li>
+					<a href="/bac-si" class="animenu__nav__hasDropdown" >Bác sĩ</a>
+					
+				  </li>
+				  <li>
+					<a href="/tin-tuc" class="animenu__nav__hasDropdown" >Tin tức</a>
+					
+				  </li>
+				  <li>
+					<a href="/lien-he" class="animenu__nav__hasDropdown" aria-haspopup="true">Liên hệ</a>
+					<ul class="animenu__nav__dropdown" aria-label="submenu" role="menu">
+					  <li><a href="/tim-kiem-ho-so" role="menuitem">Tra cứu hồ sơ</a></li>
+					</ul>
+				  </li>
+				 
+				<li></li>
+				</ul>
+			  </nav>
+			  <script src="js/animenu.js"></script>
+</div>
 	<!--  -->
 	<!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	<div class="container">
@@ -70,12 +110,21 @@
 						<div class="form-group row">
 								<label for="staticEmail" class="col-sm-6 col-form-label" style="font-weight:bold;">THÔNG TIN HỒ SƠ</label>
 							</div>
+							@foreach ($files as $f)
+							<div class="form-group row">
+									<label for="staticEmail" class="col-sm-2 col-form-label">Mã bệnh nhân</label>
+									<div class="col-sm-10">
+										<input type="text"
+											style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
+											readonly class="form-control-plaintext" id="staticEmail" value=" {{$f->code_patient}}">
+									</div>
+								</div>
 								<div class="form-group row">
 									<label for="staticEmail" class="col-sm-2 col-form-label">Họ tên</label>
 									<div class="col-sm-10">
 										<input type="text"
 											style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-											readonly class="form-control-plaintext" id="staticEmail" value=" {{$item->name}}">
+											readonly class="form-control-plaintext" id="staticEmail" value=" {{$f->name}}">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -83,7 +132,7 @@
 									<div class="col-sm-10">
 										<input type="text"
 											style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-											readonly class="form-control-plaintext" id="staticEmail" value=" abc@gmail.com">
+											readonly class="form-control-plaintext" id="staticEmail" value=" {{$f->email}}">
 									</div>
 								</div>
 								<div class="form-group row">
@@ -91,15 +140,15 @@
 									<div class="col-sm-10">
 										<input type="text"
 											style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-											readonly class="form-control-plaintext" id="staticEmail" value=" 0986052759">
+											readonly class="form-control-plaintext" id="staticEmail" value=" {{$f->phone}}">
 									</div>
 								</div>
 								<div class="form-group row">
-										<label for="staticEmail" class="col-sm-2 col-form-label">Tình trạng bệnh</label></label>
+										<label for="staticEmail" class="col-sm-2 col-form-label">Tình trạng bệnh</label>
 										<div class="col-sm-10">
 											<input type="text"
 												style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-												readonly class="form-control-plaintext" id="staticEmail" value=" Viêm lõ đít">
+												readonly class="form-control-plaintext" id="staticEmail" value=" {{$f->kind_disease}}">
 										</div>
 								</div>
 								<div class="form-group row">
@@ -107,9 +156,10 @@
 										<div class="col-sm-10">
 											<input type="text"
 												style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-												readonly class="form-control-plaintext" id="staticEmail" value=" Bảo">
+												readonly class="form-control-plaintext" id="staticEmail" value=" {{$f->doctor->name}}">
 										</div>
 								</div>
+								@endforeach
 								{{-- <div class="form-group row">
 									<label for="staticEmail" class="col-sm-2 col-form-label">Địa chỉ</label>
 									<div class="col-sm-10">
@@ -308,11 +358,11 @@
 					<div class="ftco-footer-widget mb-4 ml-md-5">
 						<h2 class="ftco-heading-2">Menu</h2>
 						<ul class="list-unstyled">
+							<li><a href="/" class="py-2 d-block">Trang chủ</a></li>
 							<li><a href="#" class="py-2 d-block">Chúng tôi</a></li>
-							<li><a href="#" class="py-2 d-block">Chuyên khoa</a></li>
-							<li><a href="#" class="py-2 d-block">Bác sĩ</a></li>
-							<li><a href="#" class="py-2 d-block">Tin tức</a></li>
-							<li><a href="#" class="py-2 d-block">Liên hệ</a></li>
+							<li><a href="/tin-tuc" class="py-2 d-block">Tin tức</a></li>
+							<li><a href="/bac-si" class="py-2 d-block">Bác sĩ</a></li>
+							<li><a href="/lien-he" class="py-2 d-block">Liên hệ</a></li>
 						</ul>
 					</div>
 				</div>

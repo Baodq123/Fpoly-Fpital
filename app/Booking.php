@@ -14,6 +14,10 @@ class Booking extends Model
     }
 
     protected $fillable = [
+<<<<<<< Updated upstream
     	'name', 'email', 'phone', 'date', 'time', 'service_id', 'doctor_id', 'status',
+=======
+    	'name', 'email', 'phone', 'date','time','service_id', 'doctor_id', 'note',
+>>>>>>> Stashed changes
     ];
 }

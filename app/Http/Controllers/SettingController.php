@@ -7,9 +7,18 @@ use App\Doctor;
 use App\Service;
 use App\Post;
 use App\History;
+<<<<<<< Updated upstream
 use App\Booking;
 use App\Comment;
 use App\Category;
+=======
+use App\Feedback;
+use App\Contact;
+use App\Booking;
+use App\Comment;
+use App\Category;
+use App\Errorpost;
+>>>>>>> Stashed changes
 use App\File;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -37,11 +46,21 @@ class SettingController extends Controller
     public function index() {
         $service = Service::all()->take(4);
         $doctor = Doctor::all();
+<<<<<<< Updated upstream
         $posts = Post::all()->take(3);
         $comment = Comment::all()->take(4);
         $settings = Setting::all();
 
         return view('site.index', compact('service', 'doctor', 'posts', 'comment', 'settings'));
+=======
+        $contact = Contact::all();
+        $posts = Post::all()->take(3);
+        $posts2 = Post::all()->take(1);
+        $feedback = Feedback::all()->take(4);
+        $settings = Setting::all();
+        $user = User::all();
+        return view('site.index', compact('service', 'doctor', 'posts', 'feedback', 'settings','contact','user','posts2'));
+>>>>>>> Stashed changes
     }
 
     public function service() {
@@ -50,6 +69,10 @@ class SettingController extends Controller
 
         return view('site.service', compact('service', 'service1'));
     }
+<<<<<<< Updated upstream
+=======
+    
+>>>>>>> Stashed changes
 
     public function doctor() {
         $doctor = Doctor::all();
@@ -79,16 +102,27 @@ class SettingController extends Controller
         return view('site.change-password', compact('user'));
     }
 
+<<<<<<< Updated upstream
     public function getHis($id) {
         $user = Auth::user()->find($id);
         $histories = History::all()->where('user_id', $id);
         return view('site.list-history', compact('histories', 'user'));
+=======
+
+    public function getHis($id) {
+        $histories = History::where('user_id', $id)->get();
+        return view('site.list-history', compact('histories'));
+>>>>>>> Stashed changes
     }
 
     public function History($id) {
         $histories = History::find($id);
         return view('site.detail-history', compact('histories'));
     }
+<<<<<<< Updated upstream
+=======
+    
+>>>>>>> Stashed changes
 
     public function contact() {
         $contact = Setting::all();
@@ -112,9 +146,45 @@ class SettingController extends Controller
 
     public function detail($id) {
         $detail = Post::find($id);
+<<<<<<< Updated upstream
         $comment = Comment::where('post_id', $id)->paginate(10);
         return view('site.blog-detail', compact('detail', 'comment'));
     }
+=======
+        $post = Post::all()->take(5);
+        $error = Errorpost::where('post_id', $id)->get();
+        $cate3 = Category::all()->take(5);
+        $comment = Comment::where('post_id', $id)->paginate(10);
+        // $error = Errorpost::all();
+        return view('site.blog-detail', compact('detail', 'comment','error','cate3','post'));
+    }
+
+    public function getError($id) {
+        $error = Errorpost::where('post_id', $id)->get();
+        return redirect(route('detail'));
+    }
+
+    public function postError(Request $request){
+        $error = new Errorpost();
+        $error->post_id = $request->post_id;
+        $error->author = $request->author;
+        $error->cate_id = $request->cate_id;
+        $error->publish_date = $request->publish_date;
+        $error->save();
+        return redirect(route('bao-loi-bai-viet'));
+      }
+
+      public function postLienhe(Request $request){
+        $contact = new Contact();
+        $contact->user_id = Auth::user()->id;
+        $contact->name = Auth::user()->name;;
+        $contact->email = $request->email;
+        $contact->phone = Auth::user()->phone;
+        $contact->message = 'Đăng ký nhận thông tin';
+        $contact->save();
+        return redirect(route('index'));
+      }
+>>>>>>> Stashed changes
 
     public function detailDoctor($id) {
         $doctor1 = Doctor::find($id);
@@ -124,6 +194,7 @@ class SettingController extends Controller
     public function detailService($id) {
         $service1 = Service::find($id);
         $cates3 = Category::all();
+<<<<<<< Updated upstream
         $post3 = Post::all()->take(5);
         return view('site.detail-service', compact('service1', 'post3', 'cates3'));
     }
@@ -133,6 +204,16 @@ class SettingController extends Controller
         $booking->fill($request->all());
 
     	$booking->save();
+=======
+        $service3 = Service::all()->take(5);
+        return view('site.detail-service', compact('service1', 'service3', 'cates3'));
+    }
+
+    public function postBooking(Request $request){
+        $booking = new Booking; 
+        $booking->fill($request->all());
+        $booking->save();
+>>>>>>> Stashed changes
         return redirect(route('index'));
     }
 
@@ -149,7 +230,11 @@ class SettingController extends Controller
 
     public function postFile(Request $request){
         $tk = $request->tk;
+<<<<<<< Updated upstream
         $files = File::where('code_patient', 'like', "%$tk%")->orWhere('name', 'like', "%$tk%")->orWhere('address', 'like', "%$tk%");
+=======
+        $files = File::where('code_patient', 'like', "%$tk%")->orWhere('name', 'like', "%$tk%")->orWhere('address', 'like', "%$tk%")->get();
+>>>>>>> Stashed changes
         return view('site.file', compact('tk', 'files'));
     }
 

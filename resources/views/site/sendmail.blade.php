@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Real Programmer</title>
+    <title>Xác nhận lịch khám</title>
 </head>
 <body>
-    <h1>{{ $details['title'] }}</h1>
-    <p>{{ $details['body'] }}</p>
-    {{-- <p>{{ $details['doctor'] }}</p>
-    <p>{{ $details['service'] }}</p> --}}
+    <h1>XÁC NHẬN ĐẶT LỊCH KHÁM THÀNH CÔNG</h1>
+    <p>Đây là thông tin lịch khám của bạn:</p>
+    <p>Họ và Tên: <strong>{{ $booking->name }}</strong></p>
+    <p>Bác sĩ: <strong>{{ $booking->doctor->name }}</strong></p>
+    <p>Dịch vụ khám: <strong>{{ $booking->service->name }}</strong></p>
+    <p>Ngày khám: <strong>{{ $booking->date }}</strong></p>
+    <p>Giờ khám: <strong>{{ $booking->time }}</strong></p>
     <p>Nếu có thắc mắc cần giải đáp hãy liên hệ hotline 0986052759 để được tư vấn.</p>
     -----------------------
     <p>Xin chân thành cảm ơn</p>

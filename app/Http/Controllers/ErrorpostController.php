@@ -34,6 +34,21 @@ class ErrorpostController extends Controller
     ]); 
   }
 
+  // public function getError($id){
+  //   $post = Post::find($id);
+  //   return redirect(route('bao-loi-bai-viet'));
+  // }
+
+  public function postError($id, Request $request){
+    $error = new Errorpost();
+    $error->post_id = $request->post_id;
+    $error->author = $request->author;
+    $error->cate_id = $request->cate_id;
+    $error->publish_date = $request->publish_date;
+    $error->save();
+    return redirect("detail-{$id}");
+  }
+
   public function removeError($id){
     DB::beginTransaction();
     try{

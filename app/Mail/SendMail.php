@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Mail;
-
+use App\Booking;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $details;
+    // public $details;
+    public $booking;
 
     /**
      * Create a new message instance.
@@ -20,9 +21,10 @@ class SendMail extends Mailable
 
 
 
-    public function __construct($details)
+    public function __construct($booking)
     {
-        $this->details = $details;
+        // $this->details = $details;
+        $this->booking = $booking;
     }
 
     /**

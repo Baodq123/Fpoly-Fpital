@@ -31,7 +31,7 @@
 							</a>
 						</div>
 						<div>
-							<a href="Forgot Password.html" class="txt1">
+							<a href="{{route('password.request')}}" class="txt1">
 								Quên mật khẩu
 							</a>
 						</div>

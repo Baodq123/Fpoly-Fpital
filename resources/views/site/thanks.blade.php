@@ -9,6 +9,7 @@
 		<div class="alert alert-success" role="alert">
 		 	Bạn đã đặt lịch khám thành công. Thông tin lịch khám chi tiết sẽ được gửi vào email cá nhân của bạn.
 		</div>
+		<a href="/">Trang chu</a>
 	 </div>
 </body>
 </html>

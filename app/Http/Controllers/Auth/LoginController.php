@@ -48,7 +48,7 @@ class LoginController extends Controller
     }
 
     public function loginForm(){
-        return view('auth.login');
+        return view('auth.login-admin');
     }
 
     public function postLogin(LoginRequest $request){
@@ -57,7 +57,52 @@ class LoginController extends Controller
             return redirect()->route('home');
         } 
             # code...
-            return view('auth.login');
+            return view('auth.login-admin');
+        }
+
+    public function getDangnhap(){
+            return view('site.login');
+        }
+    
+    public function postDangnhap(Request $request){
+        if (Auth::attempt(['email' => $request->email,
+                            'password' => $request->password])){
+             return redirect('/');
+        } 
+            # code...
+             return view('site.login');
+        }
+
+        public function getDangky(){
+            return view('site.signup');
+        }
+    
+    public function postDangky(Request $request){
+        $model = new User();
+        if ($request->hasFile('image')) {
+
+            // Lấy tên gốc của ảnh
+        $filename = $request->image->getClientOriginalName();
+            // Thay thế kí tự khoảng trắng bằng ký tự '-'
+        $filename = str_replace(' ', '-', $filename);
+            // Thêm đoạn chuỗi không bị trùng đằng trước tên ảnh
+        $filename = uniqid() . '-' . $filename;
+            // Lưu ảnh và trả về đường dẫn
+        $path = $request->file('image')->storeAs('posts', $filename);
+
+        // storeAs('tên thư mục', 'tên ảnh')
+
+        $model->image = "images/$path";
+    }
+
+        $model->role_id = 0;
+        
+        $model->fill($request->all());
+        $model->password = bcrypt($request->password);
+        $model->save();
+
+        // Chuyển đường dẫn
+             return view('site.signup');
         }
 
     public function getDangnhap(){

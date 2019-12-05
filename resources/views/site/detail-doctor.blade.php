@@ -12,19 +12,22 @@
                                 style="font-family: utm avo; font-size: 13px; color: #fff"> fpital@gmail.com</span>
                         </div>
                         <div class="col-md-6" style="text-align:right;">
-                            <!-- Basic dropdown -->
-                            <div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
-                                <button class="dropbtnn">Xin chào, Văn Tuấn</button>
-                                <div class="dropdown-contentt">
-                                    <a href="user-information.html">Tài khoản</a>
-                                    <a href="change_password.html">Đổi mật khẩu</a>
-                                    <a href="list-history.html">Lịch sử khám</a>
-                                </div>
-                            </div>
-                            <!-- Basic dropdown -->
-    
-                            <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span
-                                    style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
+                            @if (Auth::check())
+                <div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
+                        <button class="dropbtnn" >Xin chào, {{Auth::user()->name}}</button>
+                        <div class="dropdown-contentt">
+                            <a href="/tai-khoan">Tài khoản</a>
+                            <a href="/doi-mat-khau-{{Auth::user()->id}}">Đổi mật khẩu</a>
+                            @if(Auth::check())
+                            <a href="/lich-su-kham-{{Auth::user()->id}}">Lịch sử khám</a>
+                        </div>
+                        @endif
+                    </div>
+                <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
+                @else
+                <a href="/dang-nhap"><i style="color: #fff; font-size: 13px;"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng nhập</span></a>
+                <a href="/dang-ky"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng ký</span></a>
+                @endif
                         </div>
                     </div>
                 </div>
@@ -33,7 +36,7 @@
         <div class="container">
             <div class="row first-header text-center margin-auto" style="margin-left: 350px;">
                 <div class="col-md-6 xs-12">
-                    <a href="index.html"><img src="images/fpital-logo.png" alt="" width="200px;"></a>
+                    <a href="/"><img src="Fpital/images/fpital-logo.png" alt="" width="200px;"></a>
                 </div>
             </div>
         </div>
@@ -41,45 +44,44 @@
             <hr>
         </div>
         
-        <div class="container second-header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: #fff!important; margin-left: -20px; margin-right: -20px;">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <div class="container second-header col-md-12 col-xs-12 ">
+            <nav class="animenu text-center" role="navigation" aria-label="Menu">
+                    <button class="animenu__btn">
+                      <span class="animenu__btn__bar"></span>
+                      <span class="animenu__btn__bar"></span>
+                      <span class="animenu__btn__bar"></span>
+                    </button>
     
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto" style="font-family: utm avo;">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Trang chủ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">Chúng tôi</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="services.html">Dịch vụ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="doctors.html">Bác sĩ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="blog.html">Tin tức</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Liên hệ</a>
-                        </li>
+                    <ul class="animenu__nav">
+                      <li><a href="/">Trang chủ</a></li>
+                      <li>
+                        <a href="about.html" class="animenu__nav__hasDropdown" >Chúng tôi</a>
+                        
+                      </li>
+                      <li>
+                        <a href="/dich-vu" class="animenu__nav__hasDropdown" >Dịch vụ</a>
+                        
+                      </li>
+                      <li>
+                        <a href="/bac-si" class="animenu__nav__hasDropdown" >Bác sĩ</a>
+                        
+                      </li>
+                      <li>
+                        <a href="/tin-tuc" class="animenu__nav__hasDropdown" >Tin tức</a>
+                        
+                      </li>
+                      <li>
+                        <a href="/lien-he" class="animenu__nav__hasDropdown" aria-haspopup="true">Liên hệ</a>
+                        <ul class="animenu__nav__dropdown" aria-label="submenu" role="menu">
+                          <li><a href="/tim-kiem-ho-so" role="menuitem">Tra cứu hồ sơ</a></li>
+                        </ul>
+                      </li>
+                     
+                    <li></li>
                     </ul>
-    <!-- 				<form class="form-search">
-                        <input type="search" placeholder="Search" aria-label="Search">
-                        <a href="#"><i class="fas fa-search"></i></a>
-                    </form> -->
-                    <form class="form-inline form-search my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <!--    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
-                        <a href="#"><i class="fas fa-search"></i></a>
-                    </form>
-                </div>
-            </nav>
-        </div>
+                  </nav>
+                  <script src="js/animenu.js"></script>
+    </div>
         <!--  -->
         <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
@@ -360,11 +362,11 @@
                         <div class="ftco-footer-widget mb-4 ml-md-5">
                             <h2 class="ftco-heading-2">Menu</h2>
                             <ul class="list-unstyled">
+                                <li><a href="/" class="py-2 d-block">Trang chủ</a></li>
                                 <li><a href="#" class="py-2 d-block">Chúng tôi</a></li>
-                                <li><a href="#" class="py-2 d-block">Chuyên khoa</a></li>
-                                <li><a href="#" class="py-2 d-block">Bác sĩ</a></li>
-                                <li><a href="#" class="py-2 d-block">Tin tức</a></li>
-                                <li><a href="#" class="py-2 d-block">Liên hệ</a></li>
+                                <li><a href="/tin-tuc" class="py-2 d-block">Tin tức</a></li>
+                                <li><a href="/bac-si" class="py-2 d-block">Bác sĩ</a></li>
+                                <li><a href="/lien-he" class="py-2 d-block">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>

@@ -5,6 +5,10 @@ class Contact extends Model
 {
     protected $table = "contacts";
 
+    public function user(){
+    	return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
     protected $fillable = [
     	'name', 'email', 'phone', 'content',
     ];

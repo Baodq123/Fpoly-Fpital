@@ -18,7 +18,7 @@
   z-index: 1043;
   position: fixed;
   outline: none !important;
-   }
+  -webkit-backface-visibility: hidden; }
 
 .mfp-container {
   text-align: center;
@@ -301,6 +301,7 @@ img.mfp-img {
   /**
        * Remove all paddings around the image on small screen
        */
+       
   .mfp-img-mobile .mfp-image-holder {
     padding-left: 0;
     padding-right: 0; }
@@ -349,3 +350,4 @@ img.mfp-img {
   .mfp-container {
     padding-left: 6px;
     padding-right: 6px; } }
+    /* Small devices (landscape phones, 576px and up) */

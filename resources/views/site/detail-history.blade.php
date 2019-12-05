@@ -11,21 +11,22 @@
                         style="font-family: utm avo; font-size: 13px; color: #fff"> fpital@gmail.com</span>
                 </div>
                 <div class="col-md-6" style="text-align:right;">
-                        @if (Auth::check())
-                        <div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
-                                <button class="dropbtnn" >Xin chào, {{Auth::user()->name}}</button>
-                                <div class="dropdown-contentt">
-                                    <a href="/tai-khoan">Tài khoản</a>
-                                    <a href="">Tìm kiếm hồ sơ</a>
-                                    <a href="/doi-mat-khau">Đổi mật khẩu</a>
-                                    <a href="/lich-su-kham">Lịch sử khám</a>
-                                </div>
+                    @if (Auth::check())
+                    <div class="dropdownn" style="font-family: utm avo; font-size: 13px;">
+                            <button class="dropbtnn" >Xin chào, {{Auth::user()->name}}</button>
+                            <div class="dropdown-contentt">
+                                <a href="/tai-khoan">Tài khoản</a>
+                                <a href="/doi-mat-khau-{{Auth::user()->id}}">Đổi mật khẩu</a>
+                                @if(Auth::check())
+                                <a href="/lich-su-kham-{{Auth::user()->id}}">Lịch sử khám</a>
                             </div>
-                        <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
-                        @else
-                        <a href="/dang-nhap"><i style="color: #fff; font-size: 13px;"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng nhập</span></a>
-                        <a href="/dang-ky"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng ký</span></a>
-                        @endif
+                            @endif
+                        </div>
+                    <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
+                    @else
+                    <a href="/dang-nhap"><i style="color: #fff; font-size: 13px;"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng nhập</span></a>
+                    <a href="/dang-ky"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng ký</span></a>
+                    @endif
                     </div>
             </div>
         </div>
@@ -34,12 +35,50 @@
 <div class="container">
     <div class="row first-header text-center margin-auto" style="margin-left: 350px;">
         <div class="col-md-6 xs-12">
-            <a href="index.html"><img src="images/fpital-logo.png" alt="" width="200px;"></a>
+            <a href="/"><img src="Fpital/images/fpital-logo.png" alt="" width="200px;"></a>
         </div>
     </div>
 </div>
 <div class="container-fluid">
     <hr>
+</div>
+<div class="container second-header col-md-12 col-xs-12 ">
+    <nav class="animenu text-center" role="navigation" aria-label="Menu">
+            <button class="animenu__btn">
+              <span class="animenu__btn__bar"></span>
+              <span class="animenu__btn__bar"></span>
+              <span class="animenu__btn__bar"></span>
+            </button>
+
+            <ul class="animenu__nav">
+              <li><a href="/">Trang chủ</a></li>
+              <li>
+                <a href="about.html" class="animenu__nav__hasDropdown" >Chúng tôi</a>
+                
+              </li>
+              <li>
+                <a href="/dich-vu" class="animenu__nav__hasDropdown" >Dịch vụ</a>
+                
+              </li>
+              <li>
+                <a href="/bac-si" class="animenu__nav__hasDropdown" >Bác sĩ</a>
+                
+              </li>
+              <li>
+                <a href="/tin-tuc" class="animenu__nav__hasDropdown" >Tin tức</a>
+                
+              </li>
+              <li>
+                <a href="/lien-he" class="animenu__nav__hasDropdown" aria-haspopup="true">Liên hệ</a>
+                <ul class="animenu__nav__dropdown" aria-label="submenu" role="menu">
+                  <li><a href="/tim-kiem-ho-so" role="menuitem">Tra cứu hồ sơ</a></li>
+                </ul>
+              </li>
+             
+            <li></li>
+            </ul>
+          </nav>
+          <script src="js/animenu.js"></script>
 </div>
 <!--  -->
 <!-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -88,7 +127,6 @@
 
         </div>
         <div class="col-md-9">
-            <form>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-6 col-form-label" style="font-weight:bold;">THÔNG TIN
                         LỊCH SỬ KHÁM ( {{$histories->date}} )</label>
@@ -132,7 +170,7 @@
                     <div class="col-sm-10">
                         <input type="text"
                             style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" {{$histories->doctor}}">
+                            readonly class="form-control-plaintext" id="staticEmail" value=" {{$histories->doctor->name}}">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -148,32 +186,38 @@
                     <div class="col-sm-10">
                         <input type="text"
                             style="border: 1px solid #cccccc;border-radius: 2px 2px;background: #eeeeee;color: #555555;"
-                            readonly class="form-control-plaintext" id="staticEmail" value=" {{$histories->status}}">
+                            readonly class="form-control-plaintext" id="staticEmail" value=" <?php if ($histories->status == 1): ?>Đang khám<?php endif ?><?php if ($histories->status == 0): ?>Chưa khám<?php endif ?><?php if ($histories->status == 2): ?>Đã khám<?php endif ?>">
                     </div>
                 </div><br>
+                <form action="/danh-gia-{id}" method="POST">
+                    @csrf
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-6 col-form-label" style="font-weight:bold;">ĐÁNH GIÁ DỊCH VỤ</label>
                 </div>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Đánh giá</label>
                     <div class="col-sm-10">
-                        <select
-                            style="border: 1px solid #cccccc;width:100%;height: 40px;;border-radius: 2px 2px;background: #eeeeee;color: #555555;">
-                            <option value="">Không Hài Lòng</option>
-                            <option value="">Hài Lòng</option>
-                            <option value="">Rất Hài Lòng</option>
+                        <select name="rate" id="rate"
+                            style="border: 1px solid #cccccc;width:100%;height: 40px;;border-radius: 2px 2px;background: white;color: #555555;">
+                            <option value="0">Không Hài Lòng</option>
+                            <option value="1">Hài Lòng</option>
+                            <option value="2">Rất Hài Lòng</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Đánh giá</label>
-                    <div class="col-sm-10" ">
-                        <textarea  class="form-control" rows="5" style="background: #eeeeee;">Tôi thấy dịch vụ rất là tốt, nhân viên phục vụ chu đáo</textarea>
+                    <label for="staticEmail" class="col-sm-2 col-form-label">ND đánh giá</label>
+                    <input type="hidden" name="user_id" value="{{$histories->user_id}}">
+                    <input type="hidden" name="service_id" value="{{$histories->service_id}}">
+                    <input type="hidden" name="doctor_id" value="{{$histories->doctor_id}}">
+                    <input type="hidden" name="status" value="{{$histories->status}}">
+                    <div class="col-sm-10">
+                        <textarea name="message"  class="form-control" rows="5" style="background: #eeeeee;"></textarea>
                     </div>
                 </div>
                 <!-- Basic dropdown -->
                 <div class="dropdown" style="height:210px;float:right;">
-                    <button class="dropbtn" style="border-radius: 5px!important;width: 100px;">Gửi</button>
+                    <button type="submit" class="dropbtn" style="border-radius: 5px!important;width: 100px;">Gửi</button>
                 </div>
                 <!-- Basic dropdown -->
             </form>
@@ -371,11 +415,11 @@
                 <div class="ftco-footer-widget mb-4 ml-md-5">
                     <h2 class="ftco-heading-2">Menu</h2>
                     <ul class="list-unstyled">
+                        <li><a href="/" class="py-2 d-block">Trang chủ</a></li>
                         <li><a href="#" class="py-2 d-block">Chúng tôi</a></li>
-                        <li><a href="#" class="py-2 d-block">Chuyên khoa</a></li>
-                        <li><a href="#" class="py-2 d-block">Bác sĩ</a></li>
-                        <li><a href="#" class="py-2 d-block">Tin tức</a></li>
-                        <li><a href="#" class="py-2 d-block">Liên hệ</a></li>
+                        <li><a href="/tin-tuc" class="py-2 d-block">Tin tức</a></li>
+                        <li><a href="/bac-si" class="py-2 d-block">Bác sĩ</a></li>
+                        <li><a href="/lien-he" class="py-2 d-block">Liên hệ</a></li>
                     </ul>
                 </div>
             </div>

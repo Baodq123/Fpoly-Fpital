@@ -14,10 +14,11 @@
                         <button class="dropbtnn" >Xin chào, {{Auth::user()->name}}</button>
                         <div class="dropdown-contentt">
                             <a href="/tai-khoan">Tài khoản</a>
-                            <a href="">Tìm kiếm hồ sơ</a>
-                            <a href="/doi-mat-khau">Đổi mật khẩu</a>
-                            <a href="/lich-su-kham-{id}">Lịch sử khám</a>
+                            <a href="/doi-mat-khau-{{Auth::user()->id}}">Đổi mật khẩu</a>
+                            @if(Auth::check())
+                            <a href="/lich-su-kham-{{Auth::user()->id}}">Lịch sử khám</a>
                         </div>
+                        @endif
                     </div>
                 <a href="/dang-xuat"><i style="margin-left: 20px; font-size: 13px; color: #fff"></i><span style="font-family: utm avo; font-size: 13px; color: #fff"> Đăng xuất</span></a>
                 @else
@@ -39,49 +40,44 @@
     <div class="container-fluid">
             <hr>
         </div>
-        <div class="container second-header">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: #fff!important; margin-left: -20px; margin-right: -20px;">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-        
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto" style="font-family: utm avo;">
-                            <li class="nav-item">
-                            <a class="nav-link" href="/">Trang chủ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">Chúng tôi</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/dich-vu">Dịch vụ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/bac-si">Bác sĩ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/tin-tuc">Tin tức</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/tim-kiem-ho-so">Tra cứu hồ sơ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/lien-he">Liên hệ</a>
-                            </li>
-                        </ul>
-        <!-- 				<form class="form-search">
-                            <input type="search" placeholder="Search" aria-label="Search">
-                            <a href="#"><i class="fas fa-search"></i></a>
-                        </form> -->
-                        <form action="/tim-kiem" method="POST" class="form-inline form-search my-2 my-lg-0">
-                            @csrf
-                          <input name="tukhoa" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                          {{-- <a href="#"><i class="fas fa-search"></i></a> --}}
-                        </form>
-                    </div>
-                </nav>
-            </div>
+        <div class="container second-header col-md-12 col-xs-12 ">
+			<nav class="animenu text-center" role="navigation" aria-label="Menu">
+					<button class="animenu__btn">
+					  <span class="animenu__btn__bar"></span>
+					  <span class="animenu__btn__bar"></span>
+					  <span class="animenu__btn__bar"></span>
+					</button>
+
+					<ul class="animenu__nav">
+					  <li><a href="/">Trang chủ</a></li>
+					  <li>
+						<a href="about.html" class="animenu__nav__hasDropdown" >Chúng tôi</a>
+						
+					  </li>
+					  <li>
+						<a href="/dich-vu" class="animenu__nav__hasDropdown" >Dịch vụ</a>
+						
+					  </li>
+					  <li>
+						<a href="/bac-si" class="animenu__nav__hasDropdown" >Bác sĩ</a>
+						
+					  </li>
+					  <li>
+						<a href="/tin-tuc" class="animenu__nav__hasDropdown" >Tin tức</a>
+						
+					  </li>
+					  <li>
+						<a href="/lien-he" class="animenu__nav__hasDropdown" aria-haspopup="true">Liên hệ</a>
+						<ul class="animenu__nav__dropdown" aria-label="submenu" role="menu">
+						  <li><a href="/tim-kiem-ho-so" role="menuitem">Tra cứu hồ sơ</a></li>
+						</ul>
+					  </li>
+					 
+					<li></li>
+					</ul>
+				  </nav>
+				  <script src="js/animenu.js"></script>
+	</div>
 
 {{-- <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 <div class="container">
@@ -109,15 +105,21 @@
 <div class="slider-item" style="background-image: url('Fpital/images/bg_1.jpg');">
     <div class="overlay"></div>
     <div class="container">
+        @foreach ($posts2 as $p)
         <div class="row slider-text align-items-center" data-scrollax-parent="true">
             <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-                <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Đái tháo đường có nguy hiểm không?</h1>
-                <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">
+                    <a href="/detail-{{$p->id}}">
+                        {{$p->title}}
+                    </a>
+                </h1>
+                <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">{{$p->description}}</p>
                 <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="#" class="btn btn-primary px-4 py-3 button-call">Đọc tiếp..</a></p>
             </div>
         </div>
+        @endforeach
     </div>
-</div>
+</div>    
 <div class="slider-item" style="background-image: url('Fpital/images/bg_2.jpg');">
     <div class="overlay"></div>
     <div class="container">
@@ -135,7 +137,7 @@
 <section class="ftco-intro">
     <div class="container">
         <div class="row no-gutters">
-            <div class="col-md-4 color-2 p-4">
+            <div class="col-md-3 color-2 p-4">
                 <h3 class="mb-4">Thời gian làm việc</h3>
                 <p class="openinghours d-flex">
                     <span>Thứ 2 - thứ 6</span>
@@ -150,7 +152,7 @@
                     <span>10:00 - 16:00</span>
                 </p>
             </div>
-            <div class="col-md-8 color-3 p-4">
+            <div class="col-md-6 color-3 p-4">
                 <h3 class="mb-2">Đặt lịch khám</h3>
                 <form action="/" method="POST" class="appointment-form">
                     @csrf
@@ -213,9 +215,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button style="color: white" class="btn btn-outline-primary my-2 my-sm-0" type="submit"><a style="color: white;" href="/send-mail">Đặt lịch khám</a></button>
+                        <button style="color: white" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Đặt lịch khám</button>
                     </div>
                 </form>
+            </div>
+            <div class="col-md-3 color-3 p-4">
+                <form action="/tim-kiem" method="POST">
+                    @csrf
+                <div class="form-group">
+                    <input type="text" name="tukhoa" class="form-control" id="tukhoa" placeholder=" Tìm kiếm">
+                </div>
+                <div class="form-group">
+                    <button style="color: white" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Tìm kiếm</button>
+                </div>
+            </form>
             </div>
         </div>
     </div>
@@ -460,9 +473,12 @@
                 <h2 style="font-family: UTM avo; font-size: 25px; margin-top: -10px; color: white!important">Đăng ký nhận thông tin từ Fpital</h2>
                 <div class="row d-flex justify-content-center mt-5">
                     <div class="col-md-8">
-                        <form action="#" class="subscribe-form" style="margin-top: -30px;">
+                        <form action="/dang-ky-nhan-thong-tin" class="subscribe-form" style="margin-top: -30px;" method="POST">
+                            @csrf
+                            <input type="hidden" name="name" value="">
+                            <input type="hidden" name="phone" value="">
                             <div class="form-group d-flex">
-                                <input type="text" class="form-control" placeholder="Email của bạn..">
+                                <input type="text" name="email" class="form-control" placeholder="Email của bạn..">
                                 <input type="submit" value="Đăng ký" class="submit px-3">
                             </div>
                         </form>
@@ -529,7 +545,7 @@
                 <div class="row justify-content-center ftco-animate" style="margin-top: -75px;">
                     <div class="col-md-8">
                         <div class="carousel-testimony owl-carousel ftco-owl">
-                            @foreach ($comment as $cm)
+                            @foreach ($feedback as $cm)
                             <div class="item">
                                 <div class="testimony-wrap p-4 pb-5">
                                     <div class="user-img mb-5" style="background-image: url(Fpital/images/person_1.jpg)">
@@ -591,9 +607,12 @@
 <div class="col-md-4">
     <div class="ftco-footer-widget mb-4">
         <h2 class="ftco-heading-2">Đăng ký nhận tin tức</h2>
-        <form action="#" class="subscribe-form">
+        <form action="/dang-ky-nhan-thong-tin" class="subscribe-form" style="margin-top: -30px;" method="POST">
+            @csrf
+            <input type="hidden" name="name" value="">
+            <input type="hidden" name="phone" value="">
             <div class="form-group d-flex">
-                <input type="text" class="form-control" placeholder="Nhập email của bạn..">
+                <input type="text" name="email" class="form-control" placeholder="Email của bạn..">
                 <input type="submit" value="Đăng ký" class="submit px-3">
             </div>
         </form>

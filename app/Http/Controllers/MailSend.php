@@ -13,12 +13,16 @@ use Illuminate\Support\Facades\Auth;
 class MailSend extends Controller
 {
     public function mailsend(){
-        $details = [
-            'title' => 'Đặt lịch khám thành công.',
-            'body' => 'Đây là thông tin đặt lịch khám của bạn:',
-        ];
+        // $user = User::all();
+        $booking = Booking::all();
+        // $booking->fill($request->all());
+        // $booking->save();
+        // $details = [
+        //     'title' => 'Đặt lịch khám thành công.',
+        //     'body' => 'Đây là thông tin đặt lịch khám của bạn:',
+        // ];
 
-        \Mail::to(Auth::user()->email)->send(new SendMail($details));
+        \Mail::to(Auth::user()->email)->send(new SendMail($booking));
         return view('site.thanks');
     }
 }
